@@ -3,7 +3,7 @@ import './Navbar.css'
 import avatar from '../Images/avatar.png'
 
 function Navbar() {
-  return <nav class="navbar navbar-dark bg-dark">
+  return <nav className="navbar navbar-dark bg-dark">
     <div className="nav-logo">
       Library Management
     </div>
