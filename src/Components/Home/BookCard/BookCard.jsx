@@ -11,11 +11,12 @@ function BookCard() {
           <h1 className="book-header">The Secret of Nagas</h1>
           <h2 className="book-author">By Amish</h2>
           <h3 className="book-genre">Genres : Fiction</h3>
+          <h3 className="book-isbn">Book Id : BN048</h3>
           <h3 className="book-isbn">ISBN : 99876543210</h3>
         </div>
         <div className="book-actions">
-            <button>Add</button>
-            <button>Remove</button>
+            <button className="btn btn-success">Add</button>
+            <button className="btn btn-danger">Remove</button>
         </div>
       </div>
     </div>

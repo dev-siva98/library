@@ -16,7 +16,6 @@
 .card-details {
     display: grid;
     justify-items: center;
-    gap: 10px;
 }
 
 .book-header {
