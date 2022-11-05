@@ -1,0 +1,39 @@
+.card-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: #3c40434d 0px 1px 2px 0px, #3c404326 0px 2px 6px 2px;
+}
+
+.card-image {
+    width: 150px;
+    height: 230px;
+}
+
+.card-details {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+}
+
+.book-header {
+    font-size: 20px;
+}
+
+.book-author {
+    font-size: 17px;
+    color: #777;
+}
+
+.book-genre {
+    font-size: 15px;
+    color: #777;
+}
+
+.book-isbn {
+    font-size: 15px;
+    color: #888;
+}
