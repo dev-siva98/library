@@ -78,3 +78,12 @@
     color: #007cc4;
     cursor: pointer;
 }
+
+/* Orders table */
+
+.table {
+    margin: 30px 0 0 30px;
+    width: inherit;
+    height: fit-content;
+    vertical-align: middle;
+}

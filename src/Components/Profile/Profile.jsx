@@ -17,7 +17,6 @@ function Profile() {
             alt="profile"
           />
           <h1 className="profile-name">Siva</h1>
-          <p>[admin]</p>
           <p className="profile-joined">
             Joined <span>November 04, 2022</span>
           </p>

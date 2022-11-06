@@ -29,10 +29,18 @@ function Navbar() {
         </div>
         {showDropdown && (
           <div className="dropdown-items">
-            <Link to={"profile"} className="dropdown-link">
+            <Link
+              to={"profile"}
+              className="dropdown-link"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
               Account
             </Link>
-            <Link to={"login"} className="dropdown-link">
+            <Link
+              to={"login"}
+              className="dropdown-link"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
               Login
             </Link>
           </div>
