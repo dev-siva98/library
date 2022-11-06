@@ -10,7 +10,8 @@
 .form-header {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 2rem;
+  font-size: 1.6rem;
+  color: #555;
 }
 
 .form-control {
