@@ -1,0 +1,33 @@
+.login-form {
+  width: fit-content;
+  margin: auto;
+  margin-top: 30px;
+  padding: 20px 60px 40px 60px;
+  border-radius: 10px;
+  box-shadow: #0e1e251f 0px 2px 4px 0px, #0e1e2552 0px 2px 16px 0px;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.form-control {
+  width: fit-content;
+}
+
+.login-action-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-action-container p {
+  margin: 0;
+}
+
+.swap-link {
+  margin-left: 5px;
+}

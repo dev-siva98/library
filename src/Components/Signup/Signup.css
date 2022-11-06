@@ -1,34 +1,11 @@
-.signup-container {
-  width: 430px;
+.signup-form {
+  width: fit-content;
   margin: auto;
   margin-top: 30px;
+  padding: 20px 60px;
+  border-radius: 10px;
+  box-shadow: #0e1e251f 0px 2px 4px 0px, #0e1e2552 0px 2px 16px 0px;
 }
-
-.signup-form-header {
-  text-align: center;
-}
-
-.signup-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-}
-
-.signup-form-sections {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.form-control {
-  width: fit-content;
-}
-
-.input-error {
-  border: 1px solid #db0707;
-  background-color: #ffdada;
-}
-
 
 .signup-action-container {
     margin-top: 10px;

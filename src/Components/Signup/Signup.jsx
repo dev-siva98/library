@@ -1,7 +1,6 @@
-import React from "react";
-import { useRef } from "react";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Signup.css";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [errors, setErrors] = useState({
@@ -52,76 +51,82 @@ function Signup() {
   };
 
   return (
-    <div className="signup-container">
-      <h1 className="signup-form-header">Create account</h1>
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <div className="signup-form-sections">
-          <label htmlFor="name">Name :</label>
-          <input
-            required={true}
-            type="text"
-            placeholder="John Samuel"
-            className={`form-control ${errors.name ? "input-error" : ""}`}
-            ref={nameRef}
-          />
-        </div>
+    <form className="signup-form" onSubmit={handleSubmit}>
+      <h1 className="form-header">Create account</h1>
+      <div className="form-floating mb-2">
+        <input
+          type="text"
+          id="name"
+          className={`form-control ${errors.name ? "is-invalid" : ""}`}
+          placeholder="John Samuel"
+          required={true}
+          ref={nameRef}
+        />
+        <label htmlFor="name">Name</label>
+      </div>
 
-        <div className="signup-form-sections">
-          <label htmlFor="email">E-mail :</label>
-          <input
-            required={true}
-            type="email"
-            placeholder="example@example.com"
-            className={`form-control ${errors.email ? "input-error" : ""}`}
-            ref={emailRef}
-          />
-        </div>
+      <div className="form-floating mb-2">
+        <input
+          type="email"
+          id="email"
+          className={`form-control ${errors.email ? "is-invalid" : ""}`}
+          placeholder="example@example.com"
+          required={true}
+          ref={emailRef}
+        />
+        <label htmlFor="email">E-mail</label>
+      </div>
 
-        <div className="signup-form-sections">
-          <label htmlFor="dob">Date of Birth :</label>
-          <input
-            required={true}
-            type="date"
-            className={`form-control ${errors.dob ? "input-error" : ""}`}
-            ref={dobRef}
-          />
-        </div>
+      <div className="form-floating mb-2">
+        <input
+          type="date"
+          id="dob"
+          className={`form-control ${errors.dob ? "is-invalid" : ""}`}
+          required={true}
+          ref={dobRef}
+        />
+        <label htmlFor="dob">Date of Birth</label>
+      </div>
 
-        <div className="signup-form-sections">
-          <label htmlFor="password">Password :</label>
-          <input
-            required={true}
-            type="password"
-            minLength={4}
-            placeholder="Minimum 4 characters"
-            className={`form-control ${errors.password ? "input-error" : ""}`}
-            ref={passwordRef}
-          />
-        </div>
+      <div className="form-floating mb-2">
+        <input
+          type="password"
+          id="password"
+          className={`form-control ${errors.password ? "is-invalid" : ""}`}
+          placeholder="Minimum 4 characters"
+          required={true}
+          ref={passwordRef}
+          minLength={4}
+        />
+        <label htmlFor="password">Password</label>
+      </div>
 
-        <div className="signup-form-sections">
-          <label htmlFor="confirmPassword">Re-type password :</label>
-          <input
-            required={true}
-            type="password"
-            minLength={4}
-            placeholder="********"
-            className={`form-control ${
-              errors.confirmPassword ? "input-error" : ""
-            }`}
-            ref={confirmRef}
-          />
-        </div>
-        <div className="signup-form-sections signup-action-container">
-          <p>
-            Already have an account ? <span className="swap-link">login</span>
-          </p>
-          <button type="submit" className="btn btn-primary">
-            Signup
-          </button>
-        </div>
-      </form>
-    </div>
+      <div className="form-floating mb-2">
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirm password"
+          className={`form-control ${
+            errors.confirmPassword ? "is-invalid" : ""
+          }`}
+          required={true}
+          ref={confirmRef}
+          minLength={4}
+        />
+        <label htmlFor="confirmPassword">Confirm password</label>
+      </div>
+      <div className="signup-action-container">
+        <button type="submit" className="btn btn-primary">
+          Signup
+        </button>
+        <p>
+          Already have an account ?{" "}
+          <Link to={"/login"} className="swap-link">
+            Login
+          </Link>
+        </p>
+      </div>
+    </form>
   );
 }
 
