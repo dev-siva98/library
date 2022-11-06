@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import avatar from "../Images/avatar.png";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -8,27 +9,35 @@ function Navbar() {
   return (
     <nav className="navbar navbar-dark bg-dark">
       <div className="nav-logo">Library Management</div>
-      <ul className="nav-items">
-        <li className="nav-link">Home</li>
-        <li className="nav-link">Checkout</li>
+      <div className="nav-items">
+        <Link className="nav-link" to={"/"}>
+          Home
+        </Link>
+        <Link className="nav-link" to={"/"}>
+          Checkout
+        </Link>
         <div
           className="nav-link dropdown-pointer"
           onClick={() => setShowDropdown(!showDropdown)}
         >
           <img className="nav-avatar" src={avatar} alt="" />
           <i
-            class={
+            className={
               showDropdown ? "bi bi-caret-up-fill" : "bi bi-caret-down-fill"
             }
           ></i>
         </div>
         {showDropdown && (
-          <ul className="dropdown-items">
-            <li className="dropdown-link">Account</li>
-            <li className="dropdown-link">Login</li>
-          </ul>
+          <div className="dropdown-items">
+            <Link to={"profile"} className="dropdown-link">
+              Account
+            </Link>
+            <Link to={"login"} className="dropdown-link">
+              Login
+            </Link>
+          </div>
         )}
-      </ul>
+      </div>
     </nav>
   );
 }

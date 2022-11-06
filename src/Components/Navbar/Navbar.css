@@ -38,6 +38,8 @@
 }
 
 .dropdown-items {
+  display: flex;
+  flex-direction: column;
   padding: 10px 20px;
   border: 1px solid #222;
   color: #444;

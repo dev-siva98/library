@@ -9,8 +9,8 @@ import Signup from "./Components/Signup/Signup";
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<UserHome />} />
           <Route path="/signup" element={<Signup />} />
