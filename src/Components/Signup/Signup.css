@@ -1,4 +1,4 @@
-.signup-form {
+.form-container {
   width: fit-content;
   margin: auto;
   margin-top: 30px;
@@ -7,11 +7,11 @@
   box-shadow: #0e1e251f 0px 2px 4px 0px, #0e1e2552 0px 2px 16px 0px;
 }
 
-.signup-action-container {
+.form-action-container {
     margin-top: 10px;
 }
 
-.signup-action-container p {
+.form-action-container p {
     margin: 0;
 }
 

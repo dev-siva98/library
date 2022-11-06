@@ -10,14 +10,53 @@
 .nav-items {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .nav-link {
-    margin: 0 0 0 25px;
+  margin: 0 0 0 25px;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  transform: scale(1.1);
+}
+
+.nav-link:active {
+  color: #f13133;
+}
+
+.dropdown-pointer {
+  cursor: pointer;
 }
 
 .nav-avatar {
   height: 30px;
   border-radius: 50%;
+  margin-right: 5px;
+}
+
+.dropdown-items {
+  padding: 10px 20px;
+  border: 1px solid #222;
+  color: #444;
+  background-color: #fff;
+  position: absolute;
+  right: -25px;
+  top: 60px;
+}
+
+.dropdown-link {
+  margin: 3px 0 7px 0;
+  color: #444;
   cursor: pointer;
+}
+
+.dropdown-link:hover {
+  transform: scale(1.1);
+}
+
+.dropdown-link:active {
+  color: #f13133;
 }

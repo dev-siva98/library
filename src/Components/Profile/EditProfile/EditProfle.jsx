@@ -22,7 +22,7 @@ function EditProfle() {
 
   const date = new Date("09-10-1998");
   return (
-    <form className="signup-form" onSubmit={handleSubmit}>
+    <form className="form-container" onSubmit={handleSubmit}>
       <h1 className="form-header">Edit profile</h1>
       <div className="form-floating mb-2">
         <input
@@ -107,7 +107,7 @@ function EditProfle() {
           </div>
         </>
       )}
-      <div className="signup-action-container">
+      <div className="form-action-container">
         <button type="submit" className="btn btn-primary">
           Save
         </button>

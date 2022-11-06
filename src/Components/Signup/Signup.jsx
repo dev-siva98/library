@@ -51,7 +51,7 @@ function Signup() {
   };
 
   return (
-    <form className="signup-form" onSubmit={handleSubmit}>
+    <form className="form-container" onSubmit={handleSubmit}>
       <h1 className="form-header">Create account</h1>
       <div className="form-floating mb-2">
         <input
@@ -115,7 +115,7 @@ function Signup() {
         />
         <label htmlFor="confirmPassword">Confirm password</label>
       </div>
-      <div className="signup-action-container">
+      <div className="form-action-container">
         <button type="submit" className="btn btn-primary">
           Signup
         </button>
