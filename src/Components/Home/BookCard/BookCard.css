@@ -1,6 +1,6 @@
 .book-card {
   width: 250px;
-  height: fit-content;
+  height: 450px;
   align-items: center;
   padding-top: 15px;
 }
@@ -19,4 +19,9 @@
 .card-text {
     color: #555;
     margin-bottom: 5px;
+}
+
+.book-outof-stock {
+  margin-top: 5px;
+  color: #e70707;
 }

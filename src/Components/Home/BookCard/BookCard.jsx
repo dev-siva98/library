@@ -2,7 +2,8 @@ import React from "react";
 import "./BookCard.css";
 
 function BookCard({ book }) {
-  const { _id, title, author, isbnNo, genre, img } = book;
+  const { _id, title, author, isbnNo, genre, img, copies } = book;
+
   return (
     <div className="card book-card">
       <img className="card-img-top" src={img} alt="book" />
@@ -12,7 +13,11 @@ function BookCard({ book }) {
         <p className="card-text">{genre}</p>
         <p className="card-text">Id : {_id}</p>
         <p className="card-text">ISBN : {isbnNo}</p>
-        <button className="btn btn-primary">Add</button>
+        {copies > 0 ? (
+          <button className="btn btn-primary">Add</button>
+        ) : (
+          <p className="book-outof-stock">Out of stock</p>
+        )}
       </div>
     </div>
   );

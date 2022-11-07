@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import BookCard from "./BookCard/BookCard";
 import "./Home.css";
-import { data } from "../../data";
+import { books } from "../../data";
 
 function UserHome() {
   const scrollRef = useRef();
@@ -17,7 +17,7 @@ function UserHome() {
         <button className="btn btn-outline-info explore-button" onClick={handleScroll}>Explore</button>
       </div>
       <div ref={scrollRef} className="cards-container">
-        {data.map((book) => {
+        {books.map((book) => {
           return <BookCard book={book} key={book._id} />;
         })}
       </div>

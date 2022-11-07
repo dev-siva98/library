@@ -1,6 +1,6 @@
 import React from "react";
 import Row from "./Row";
-import { tableRow } from "../../data";
+import { orders } from "../../data";
 import "./Orders.css";
 
 function Orders() {
@@ -16,7 +16,7 @@ function Orders() {
         </tr>
       </thead>
       <tbody>
-        {tableRow.map((row) => {
+        {orders.map((row) => {
           return <Row data={row} key={row._id} />;
         })}
       </tbody>

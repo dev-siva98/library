@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-dark bg-dark">
       <Link to={"/"} className="nav-logo">
-        <i class="bi bi-book-half"></i>
+        <i className="bi bi-book-half"></i>
         <p> Library</p>
       </Link>
       <div className="nav-items">
