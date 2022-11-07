@@ -5,7 +5,19 @@
   position: sticky;
   padding: 0 40px;
   z-index: 999;
-  box-shadow: 0px 8px 10px #000;
+  box-shadow: 0px 3px 8px #222;
+}
+
+.nav-logo {
+  color: #fff;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo:hover {
+  color: #fff;
 }
 
 .nav-items {

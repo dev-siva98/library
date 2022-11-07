@@ -3,6 +3,7 @@ import "./App.css";
 import UserHome from "./Components/Home/UserHome";
 import Login from "./Components/Login/Login";
 import Navbar from "./Components/Navbar/Navbar";
+import Orders from "./Components/Orders/Orders";
 import Profile from "./Components/Profile/Profile";
 import Signup from "./Components/Signup/Signup";
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -8,13 +8,16 @@ function Navbar() {
 
   return (
     <nav className="navbar navbar-dark bg-dark">
-      <div className="nav-logo">Library Management</div>
+      <Link to={"/"} className="nav-logo">
+        <i class="bi bi-book-half"></i>
+        <p> Library</p>
+      </Link>
       <div className="nav-items">
         <Link className="nav-link" to={"/"}>
           Home
         </Link>
-        <Link className="nav-link" to={"/"}>
-          Checkout
+        <Link className="nav-link" to={"/orders"}>
+          Orders
         </Link>
         <div
           className="nav-link dropdown-pointer"

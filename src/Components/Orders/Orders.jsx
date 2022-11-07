@@ -1,23 +1,23 @@
 import React from "react";
-import data from "../../Constants/data.json";
 import Row from "./Row";
+import { tableRow } from "../../data";
+import "./Orders.css";
 
 function Orders() {
-  console.log(data.tableRow);
   return (
     <table className="table table-hover">
       <thead>
         <tr>
           <th scope="col">Order Id</th>
+          <th scope="col">Book Id</th>
           <th scope="col">Date</th>
           <th scope="col">Last date</th>
-          <th scope="col">Return date</th>
-          <th scope="col">Action</th>
+          <th scope="col">Returned date</th>
         </tr>
       </thead>
       <tbody>
-        {data.tableRow.map((row) => {
-          return <Row data={row} key={row.orderId} />;
+        {tableRow.map((row) => {
+          return <Row data={row} key={row._id} />;
         })}
       </tbody>
     </table>

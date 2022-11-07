@@ -103,3 +103,48 @@ export const data = [
           },
       
   ];
+
+  export const tableRow = [
+    {
+      "_id": "OD001",
+      "bookId" : "BN001",
+      "date": "05-11-2022",
+      "expiry": "19-11-2022",
+      "returnDate": "12-11-2022"
+    },
+    {
+      "_id": "OD002",
+      "bookId" : "BN002",
+      "date": "06-11-2022",
+      "expiry": "19-11-2022",
+      "returnDate": "15-11-2022"
+    },
+    {
+      "_id": "OD003",
+      "bookId" : "BN003",
+      "date": "07-11-2022",
+      "expiry": "19-11-2022",
+      "returnDate": "17-11-2022"
+    },
+    {
+      "_id": "OD004",
+      "bookId" : "BN004",
+      "date": "08-11-2022",
+      "expiry": "19-11-2022",
+      "returnDate": "13-11-2022"
+    },
+    {
+      "_id": "OD005",
+      "bookId" : "BN005",
+      "date": "09-11-2022",
+      "expiry": "19-11-2022",
+      "returnDate": "11-11-2022"
+    },
+    {
+      "_id": "OD006",
+      "bookId" : "BN006",
+      "date": "10-11-2022",
+      "expiry": "19-11-2022",
+      "returnDate": "10-11-2022"
+    }
+  ]
