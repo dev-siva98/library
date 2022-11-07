@@ -121,7 +121,7 @@ function Signup() {
         </button>
         <p>
           Already have an account ?{" "}
-          <Link to={"/login"} className="swap-link">
+          <Link to={"/"} className="swap-link">
             Login
           </Link>
         </p>

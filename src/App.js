@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import AddBook from "./Components/AddBook/AddBook";
 import AdminBooks from "./Components/Admin/AdminBooks";
 import AdminHome from "./Components/Admin/AdminHome";
 import AdminOrders from "./Components/Admin/AdminOrders";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/admin/books" element={<AdminBooks />} />
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/orders" element={<AdminOrders />} />
+            <Route path="/admin/addbook" element={<AddBook />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/user" element={<UserHome />} />
             <Route path="/profile" element={<Profile />} />
