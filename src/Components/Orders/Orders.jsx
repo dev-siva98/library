@@ -1,7 +1,6 @@
 import React from "react";
 import Row from "./Row";
 import { orders } from "../../data";
-import "./Orders.css";
 
 function Orders() {
   return (

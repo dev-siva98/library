@@ -11,25 +11,31 @@ import Navbar from "./Components/Navbar/Navbar";
 import Orders from "./Components/Orders/Orders";
 import Profile from "./Components/Profile/Profile";
 import Signup from "./Components/Signup/Signup";
+import { loginContext } from "./loginContext";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const loggedIn = { isLoggedIn, setIsLoggedIn };
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar isAdmin={isAdmin}/>
-        <Routes>
-          <Route path="/" element={<UserHome />} />
-          <Route path="/admin" element={<AdminHome />} />
-          <Route path="/admin/books" element={<AdminBooks />} />
-          <Route path="/admin/users" element={<AdminUsers />} />
-          <Route path="/admin/orders" element={<AdminOrders />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/orders" element={<Orders />} />
-        </Routes>
+        <loginContext.Provider value={loggedIn}>
+          <Navbar isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
+          <Routes>
+            <Route index element={<Login />} />
+            <Route path="/admin" element={<AdminHome />} />
+            <Route path="/admin/books" element={<AdminBooks />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/orders" element={<AdminOrders />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/user" element={<UserHome />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/orders" element={<Orders />} />
+          </Routes>
+        </loginContext.Provider>
       </BrowserRouter>
     </div>
   );

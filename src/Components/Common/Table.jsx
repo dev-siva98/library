@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Row from "./Row";
+import './Table.css'
 
 function Table({ headers, body, rows }) {
   return (
