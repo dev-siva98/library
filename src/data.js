@@ -153,3 +153,27 @@ export const orders = [
     returnDate: "10-11-2022",
   },
 ];
+
+export const adminOrderHeaders = [
+  "OrderId",
+  "UserId",
+  "BookId",
+  "Date taken",
+  "Return date",
+];
+
+export const adminUserHeaders = [
+  "UserId",
+  "Name",
+  "Email",
+  "Date of birth",
+  "Joined at",
+];
+
+export const adminBookHeaders = [
+  "BookId",
+  "Title",
+  "Author",
+  "Genre",
+  "Copies Available"
+]

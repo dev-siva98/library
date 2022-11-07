@@ -1,0 +1,13 @@
+.admin-header {
+    font-size: 2.5rem;
+}
+
+.admin-header-2 {
+    font-size: 1.5rem;
+}
+
+.admin-home-links {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
