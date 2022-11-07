@@ -10,6 +10,7 @@ function AdminOrders() {
         headers={adminOrderHeaders}
         body={adminOrderBody}
         rows={allOrders}
+        edit={false} //only books have edit as true for passing the props with id to edit details
       />
     </div>
   );

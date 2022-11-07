@@ -1,13 +1,22 @@
-import React, { useRef, useState } from "react";
-import "./AddBook.css";
-
-function AddBook() {
+import React, { useEffect, useRef, useState } from "react";
+import { books } from "../../data";
+import { useParams } from "react-router-dom";
+function EditBook() {
   const [errors, setErrors] = useState({
     title: false,
     author: false,
     genre: false,
     img: false,
   });
+  const [book, setBook] = useState();
+  const [inputChanged, setInputChanged] = useState(false); //detect input change to enable save button
+  const { bookId } = useParams(); //get bookId from params
+
+  useEffect(() => {
+    books.forEach((book) => {
+      if (book._id === bookId) setBook(book);
+    });
+  }, []);
 
   const titleRef = useRef();
   const authorRef = useRef();
@@ -16,26 +25,37 @@ function AddBook() {
   const imgRef = useRef();
   const copiesRef = useRef();
 
+  const handleChange = (e, value) => {
+    if (e.target.value.trim() != value) setInputChanged(true);
+    else setInputChanged(false);
+  };
+
+  const handleImageChange = () => {
+    if (imgRef.current.value) setInputChanged(true);
+    else setInputChanged(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const errorSet = { ...errors };
 
     const title = titleRef.current.value.trim();
     const author = authorRef.current.value.trim();
     const isbnNo = isbnRef.current.value;
     const genre = genreRef.current.value.trim();
-    const img = imgRef.current.value;
     const copies = copiesRef.current.value;
+    const img = imgRef.current.value;
 
-    if (title && author && isbnNo && genre && img && copies) {
+    const errorSet = { ...errors };
+
+    if (title && author && isbnNo && genre && copies && img) {
+      //validate fields have values to aviod overriting with empty values
       const data = {
         title,
         author,
         isbnNo,
         genre,
-        img,
         copies,
+        img,
       };
       console.log(data);
     }
@@ -50,14 +70,16 @@ function AddBook() {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <h1 className="form-header">Add book</h1>
+      <h1 className="form-header">Edit book</h1>
       <div className="form-floating mb-2">
         <input
           type="text"
           id="title"
           className={`form-control ${errors.title ? "is-invalid" : ""}`}
-          required
           ref={titleRef}
+          required
+          defaultValue={book?.title}
+          onChange={(e) => handleChange(e, book.title)}
         />
         <label htmlFor="title">Book title</label>
       </div>
@@ -67,8 +89,10 @@ function AddBook() {
           type="text"
           id="author"
           className={`form-control ${errors.author ? "is-invalid" : ""}`}
-          required
           ref={authorRef}
+          required
+          defaultValue={book?.author}
+          onChange={(e) => handleChange(e, book.author)}
         />
         <label htmlFor="author">Author</label>
       </div>
@@ -78,9 +102,11 @@ function AddBook() {
           type="number"
           id="isbn"
           className="form-control"
-          required
           ref={isbnRef}
           minLength={8}
+          required
+          defaultValue={book?.isbnNo}
+          onChange={(e) => handleChange(e, book.isbnNo)}
         />
         <label htmlFor="isbn">ISBN No</label>
       </div>
@@ -90,8 +116,10 @@ function AddBook() {
           type="text"
           id="genre"
           className={`form-control ${errors.genre ? "is-invalid" : ""}`}
-          required
           ref={genreRef}
+          required
+          defaultValue={book?.genre}
+          onChange={(e) => handleChange(e, book.genre)}
         />
         <label htmlFor="genre">Genre</label>
       </div>
@@ -101,9 +129,11 @@ function AddBook() {
           type="number"
           id="copies"
           className="form-control"
-          required
           ref={copiesRef}
+          required
           min={0}
+          defaultValue={book?.copies}
+          onChange={(e) => handleChange(e, book.copies)}
         />
         <label htmlFor="copies">Copies available</label>
       </div>
@@ -114,13 +144,19 @@ function AddBook() {
           id="img"
           accept="image/*"
           className={`form-control form-file ${errors.img ? "is-invalid" : ""}`}
+          required
           ref={imgRef}
+          onChange={handleImageChange}
         />
         <label htmlFor="img">Image</label>
       </div>
 
       <div className="form-action-container">
-        <button type="submit" className="btn btn-primary">
+        <button
+          disabled={!inputChanged}
+          type="submit"
+          className="btn btn-primary"
+        >
           Save
         </button>
       </div>
@@ -128,4 +164,4 @@ function AddBook() {
   );
 }
 
-export default AddBook;
+export default EditBook;

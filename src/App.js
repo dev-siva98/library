@@ -6,7 +6,8 @@ import AdminBooks from "./Components/Admin/AdminBooks";
 import AdminHome from "./Components/Admin/AdminHome";
 import AdminOrders from "./Components/Admin/AdminOrders";
 import AdminUsers from "./Components/Admin/AdminUsers";
-import UserHome from "./Components/Home/UserHome";
+import EditBook from "./Components/EditBook/EditBook";
+import UserHome from "./Components/User/UserHome";
 import Login from "./Components/Login/Login";
 import Navbar from "./Components/Navbar/Navbar";
 import Orders from "./Components/Orders/Orders";
@@ -32,6 +33,7 @@ function App() {
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/orders" element={<AdminOrders />} />
             <Route path="/admin/addbook" element={<AddBook />} />
+            <Route path="/admin/editbook/:bookId" element={<EditBook />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/user" element={<UserHome />} />
             <Route path="/profile" element={<Profile />} />

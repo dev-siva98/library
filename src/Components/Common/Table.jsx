@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import Row from "./Row";
-import './Table.css'
+import "./Table.css";
 
-function Table({ headers, body, rows }) {
+function Table({ headers, body, rows, edit }) {
   return (
     <table className="table table-hover">
       <thead>
@@ -15,7 +15,7 @@ function Table({ headers, body, rows }) {
       </thead>
       <tbody>
         {rows.map((row, index) => {
-          return <Row row={row} body={body} key={index} />;
+          return <Row row={row} body={body} edit={edit} key={index} />;
         })}
       </tbody>
     </table>

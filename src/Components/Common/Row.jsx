@@ -1,17 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Row({ body, row }) {
+function Row({ body, row, edit }) {
+  const handleDelete = (bookId) => {
+    console.log(bookId);
+  };
+
   return (
     <tr>
-      <th scope="row">{row[body[0]]}</th>
+      <th scope="row">{row._id}</th>
 
       {body.map((column, index) => {
-        if (index > 0) return <td>{row[column]}</td>;
+        return <td key={index}>{row[column]}</td>;
       })}
-      
-      <td>
-        <button className="btn btn-primary">view</button>
-      </td>
+
+      {edit ? (
+        <td>
+          <Link to={`/admin/editbook/${row._id}`} className="btn btn-primary">
+            <i className="bi bi-pencil-fill"></i>
+          </Link>
+          <button
+            onClick={() => handleDelete(row._id)}
+            className="btn btn-danger"
+          >
+            <i className="bi bi-trash-fill"></i>
+          </button>
+        </td>
+      ) : (
+        <td>
+          <button className="btn btn-primary">view</button>
+        </td>
+      )}
     </tr>
   );
 }

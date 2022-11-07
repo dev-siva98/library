@@ -213,7 +213,7 @@ export const adminOrderHeaders = [
   "Return date",
 ];
 
-export const adminOrderBody = ["_id", "userId", "bookId", "date", "returnDate"];
+export const adminOrderBody = ["userId", "bookId", "date", "returnDate"];
 
 export const adminUserHeaders = [
   "UserId",
@@ -223,7 +223,7 @@ export const adminUserHeaders = [
   "Joined at",
 ];
 
-export const adminUserBody = ["_id", "name", "email", "dob", "createdAt"];
+export const adminUserBody = ["name", "email", "dob", "createdAt"];
 
 export const adminBookHeaders = [
   "BookId",
@@ -234,14 +234,7 @@ export const adminBookHeaders = [
   "Copies Available",
 ];
 
-export const adminBookBody = [
-  "_id",
-  "title",
-  "author",
-  "genre",
-  "isbnNo",
-  "copies",
-];
+export const adminBookBody = ["title", "author", "genre", "isbnNo", "copies"];
 
 export const orders = [
   {

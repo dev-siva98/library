@@ -6,7 +6,12 @@ function AdminUsers() {
   return (
     <div>
       <h1>Users</h1>
-      <Table headers={adminUserHeaders} body={adminUserBody} rows={users} />
+      <Table
+        headers={adminUserHeaders}
+        body={adminUserBody}
+        rows={users}
+        edit={false} //only books have edit as true for passing the props with id to edit details
+      />
     </div>
   );
 }
