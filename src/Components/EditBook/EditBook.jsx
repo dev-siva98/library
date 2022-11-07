@@ -6,7 +6,6 @@ function EditBook() {
     title: false,
     author: false,
     genre: false,
-    img: false,
   });
   const [book, setBook] = useState();
   const [inputChanged, setInputChanged] = useState(false); //detect input change to enable save button
@@ -47,7 +46,7 @@ function EditBook() {
 
     const errorSet = { ...errors };
 
-    if (title && author && isbnNo && genre && copies && img) {
+    if (title && author && isbnNo && genre && copies) {
       //validate fields have values to aviod overriting with empty values
       const data = {
         title,
@@ -55,7 +54,7 @@ function EditBook() {
         isbnNo,
         genre,
         copies,
-        img,
+        img: img ? img : book.img,
       };
       console.log(data);
     }
@@ -63,7 +62,6 @@ function EditBook() {
     title ? (errorSet.title = false) : (errorSet.title = true);
     author ? (errorSet.author = false) : (errorSet.author = true);
     genre ? (errorSet.genre = false) : (errorSet.genre = true);
-    img ? (errorSet.img = false) : (errorSet.img = true);
 
     setErrors(errorSet);
   };
@@ -144,8 +142,8 @@ function EditBook() {
           id="img"
           accept="image/*"
           className={`form-control form-file ${errors.img ? "is-invalid" : ""}`}
-          required
           ref={imgRef}
+          defaultValue={book?.img}
           onChange={handleImageChange}
         />
         <label htmlFor="img">Image</label>

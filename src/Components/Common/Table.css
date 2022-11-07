@@ -4,3 +4,7 @@
   width: calc(100vw - 60px);
   vertical-align: middle;
 }
+
+.row-edit {
+  margin-right: 10px;
+}

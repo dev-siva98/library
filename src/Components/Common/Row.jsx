@@ -16,7 +16,7 @@ function Row({ body, row, edit }) {
 
       {edit ? (
         <td>
-          <Link to={`/admin/editbook/${row._id}`} className="btn btn-primary">
+          <Link to={`/admin/editbook/${row._id}`} className="btn btn-primary row-edit">
             <i className="bi bi-pencil-fill"></i>
           </Link>
           <button
