@@ -1,7 +1,15 @@
+* {
+  scroll-behavior: smooth;
+}
+
 a {
   text-decoration: none;
 }
 
 ul {
   list-style-type: none;
+}
+
+p {
+  margin: 0;
 }

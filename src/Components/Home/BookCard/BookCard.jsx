@@ -1,23 +1,18 @@
 import React from "react";
 import "./BookCard.css";
-import nagas from "../../Images/nagas.jpg";
 
-function BookCard() {
+function BookCard({ book }) {
+  const { _id, title, author, isbnNo, genre, img } = book;
   return (
-    <div className="card-container">
-      <img src={nagas} alt="hey" className="card-image" />
-      <div className="card-details">
-        <div className="book-details">
-          <h1 className="book-header">The Secret of Nagas</h1>
-          <h2 className="book-author">By Amish</h2>
-          <h3 className="book-genre">Genres : Fiction</h3>
-          <h3 className="book-isbn">Book Id : BN048</h3>
-          <h3 className="book-isbn">ISBN : 99876543210</h3>
-        </div>
-        <div className="book-actions">
-            <button className="btn btn-success">Add</button>
-            <button className="btn btn-danger">Remove</button>
-        </div>
+    <div className="card book-card">
+      <img className="card-img-top" src={img} alt="book" />
+      <div className="card-body book-card-body">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">By {author}</p>
+        <p className="card-text">{genre}</p>
+        <p className="card-text">Id : {_id}</p>
+        <p className="card-text">ISBN : {isbnNo}</p>
+        <button className="btn btn-primary">Add</button>
       </div>
     </div>
   );

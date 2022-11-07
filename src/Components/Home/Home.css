@@ -1,5 +1,27 @@
 .user-home-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+}
+
+.home-welcome {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?&cs=tinysrgb&w=1260&h=750&dpr=1");
+  height: calc(100vh - 80px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.explore-button {
+  padding: 8px 25px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 20px;
+  justify-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  padding: 50px 0;
+  box-shadow: inset 0 20px 12px -5px #222;
 }
