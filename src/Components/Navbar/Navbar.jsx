@@ -4,7 +4,7 @@ import avatar from "../Images/avatar.png";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false); //to toggle dropdown menu
 
   return (
     <nav className="navbar navbar-dark bg-dark">
@@ -37,7 +37,7 @@ function Navbar() {
               className="dropdown-link"
               onClick={() => setShowDropdown(!showDropdown)}
             >
-              Account
+              Profile
             </Link>
             <Link
               to={"login"}

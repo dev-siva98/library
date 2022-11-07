@@ -6,7 +6,7 @@ import Constants from "../Constants/constants.json";
 function Profile() {
 
   return (
-    <div className="settings-container">
+    <div className="profile-container">
       <div className="sidebar">
         <div className="profile-details">
           <img
