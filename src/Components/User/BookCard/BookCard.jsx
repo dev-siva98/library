@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./BookCard.css";
+import ConfirmationModal from "./ConfirmationModal";
 
 function BookCard({ book }) {
+  const [modalShow, setModalShow] = useState(false);
   const { _id, title, author, isbnNo, genre, img, copies } = book;
 
   return (
@@ -14,11 +16,21 @@ function BookCard({ book }) {
         <p className="card-text">Id : {_id}</p>
         <p className="card-text">ISBN : {isbnNo}</p>
         {copies > 0 ? (
-          <button className="btn btn-primary">Add</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => setModalShow(true)}
+          >
+            Select
+          </button>
         ) : (
           <p className="book-outof-stock">Out of stock</p>
         )}
       </div>
+      <ConfirmationModal
+        bookDetails={book}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 }

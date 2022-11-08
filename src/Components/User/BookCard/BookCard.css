@@ -25,3 +25,9 @@
   margin-top: 5px;
   color: #e70707;
 }
+
+.modal-book-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
