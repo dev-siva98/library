@@ -14,9 +14,12 @@ function Row({ body, row, edit }) {
         return <td key={index}>{row[column]}</td>;
       })}
 
-      {edit ? (
+      {edit && (
         <td>
-          <Link to={`/admin/editbook/${row._id}`} className="btn btn-primary row-edit">
+          <Link
+            to={`/admin/editbook/${row._id}`}
+            className="btn btn-primary row-edit"
+          >
             <i className="bi bi-pencil-fill"></i>
           </Link>
           <button
@@ -25,10 +28,6 @@ function Row({ body, row, edit }) {
           >
             <i className="bi bi-trash-fill"></i>
           </button>
-        </td>
-      ) : (
-        <td>
-          <button className="btn btn-primary">view</button>
         </td>
       )}
     </tr>

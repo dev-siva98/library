@@ -7,6 +7,12 @@ import { loginContext } from "../../loginContext";
 function Navbar({ isAdmin }) {
   const [showDropdown, setShowDropdown] = useState(false); //to toggle dropdown menu
   const { isLoggedIn, setIsLoggedin } = useContext(loginContext);
+
+  const handleLogout = () => {
+    setIsLoggedin(false);
+    console.log("is logged" + isLoggedIn)
+  };
+
   return (
     <nav className="navbar navbar-dark bg-dark">
       <Link
@@ -48,13 +54,17 @@ function Navbar({ isAdmin }) {
             >
               Profile
             </Link>
-            <Link
-              to={"/"}
-              className="dropdown-link"
-              onClick={() => setShowDropdown(!showDropdown)}
-            >
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <p className="navbar-logout" onClick={handleLogout}>Logout</p>
+            ) : (
+              <Link
+                to={"/"}
+                className="dropdown-link"
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                Login
+              </Link>
+            )}
           </div>
         )}
       </div>

@@ -75,3 +75,12 @@
 .dropdown-link:active {
   color: #f13133;
 }
+
+.navbar-logout {
+  cursor: pointer;
+}
+
+.navbar-logout:hover {
+  color: #0d6efd;
+  transform: scale(1.1);
+}
