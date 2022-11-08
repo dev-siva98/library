@@ -3,6 +3,8 @@ import React, { useState } from "react";
 function Row({ data }) {
   const [rowData, setRowData] = useState(data);
 
+  const { _id, bookId, img, date, expiry, returnDate } = data;
+
   const handleReturn = () => {
     setRowData((prevData) => {
       return { ...prevData, returnDate: "06-11-2022" };
@@ -11,20 +13,20 @@ function Row({ data }) {
 
   return (
     <tr>
-      <th scope="row">{rowData._id}</th>
-      <td>{rowData.bookId}</td>
+      <th scope="row">{_id}</th>
+      <td>{bookId}</td>
       <td>
         <img
-          src={rowData.img}
+          src={img}
           style={{ width: "100px", borderRadius: "50%" }}
           alt="img"
         />
       </td>
-      <td>{rowData.date}</td>
-      <td>{rowData.expiry}</td>
+      <td>{date}</td>
+      <td>{expiry}</td>
       <td>
-        {rowData.returnDate ? (
-          rowData.returnDate
+        {returnDate ? (
+          returnDate
         ) : (
           <button onClick={handleReturn} className="btn btn-primary">
             Return now
