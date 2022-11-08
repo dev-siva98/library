@@ -242,7 +242,7 @@ export const orders = [
     bookId: "BN001",
     date: "05-11-2022",
     expiry: "19-11-2022",
-    returnDate: "12-11-2022",
+    returnDate: "",
   },
   {
     _id: "OD002",

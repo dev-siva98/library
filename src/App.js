@@ -16,7 +16,7 @@ import Signup from "./Components/Signup/Signup";
 import { loginContext } from "./loginContext";
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const loggedIn = { isLoggedIn, setIsLoggedIn };
