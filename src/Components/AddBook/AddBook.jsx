@@ -25,7 +25,7 @@ function AddBook() {
     const author = authorRef.current.value.trim();
     const isbnNo = isbnRef.current.value;
     const genre = genreRef.current.value.trim();
-    const img = imgRef.current.value;
+    const img = imgRef.current.value();
     const copies = copiesRef.current.value;
 
     if (title && author && isbnNo && genre && img && copies) {
@@ -110,10 +110,9 @@ function AddBook() {
 
       <div className="form-floating mb-2">
         <input
-          type="file"
+          type="text"
           id="img"
-          accept="image/*"
-          className={`form-control form-file ${errors.img ? "is-invalid" : ""}`}
+          className={`form-control ${errors.img ? "is-invalid" : ""}`}
           ref={imgRef}
         />
         <label htmlFor="img">Image</label>

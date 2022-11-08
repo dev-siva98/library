@@ -6,6 +6,7 @@ function EditBook() {
     title: false,
     author: false,
     genre: false,
+    img: false,
   });
   const [book, setBook] = useState();
   const [inputChanged, setInputChanged] = useState(false); //detect input change to enable save button
@@ -25,12 +26,7 @@ function EditBook() {
   const copiesRef = useRef();
 
   const handleChange = (e, value) => {
-    if (e.target.value.trim() != value) setInputChanged(true);
-    else setInputChanged(false);
-  };
-
-  const handleImageChange = () => {
-    if (imgRef.current.value) setInputChanged(true);
+    if (e.target.value.trim() !== value) setInputChanged(true);
     else setInputChanged(false);
   };
 
@@ -46,7 +42,7 @@ function EditBook() {
 
     const errorSet = { ...errors };
 
-    if (title && author && isbnNo && genre && copies) {
+    if (title && author && isbnNo && genre && copies && img) {
       //validate fields have values to aviod overriting with empty values
       const data = {
         title,
@@ -54,7 +50,7 @@ function EditBook() {
         isbnNo,
         genre,
         copies,
-        img: img ? img : book.img,
+        img,
       };
       console.log(data);
     }
@@ -62,6 +58,7 @@ function EditBook() {
     title ? (errorSet.title = false) : (errorSet.title = true);
     author ? (errorSet.author = false) : (errorSet.author = true);
     genre ? (errorSet.genre = false) : (errorSet.genre = true);
+    img ? (errorSet.img = false) : (errorSet.img = true);
 
     setErrors(errorSet);
   };
@@ -138,15 +135,14 @@ function EditBook() {
 
       <div className="form-floating mb-2">
         <input
-          type="file"
+          type="text"
           id="img"
-          accept="image/*"
           className={`form-control form-file ${errors.img ? "is-invalid" : ""}`}
           ref={imgRef}
           defaultValue={book?.img}
-          onChange={handleImageChange}
+          onChange={(e) => handleChange(e, book.img)}
         />
-        <label htmlFor="img">Image</label>
+        <label htmlFor="img">Image Url</label>
       </div>
 
       <div className="form-action-container">
