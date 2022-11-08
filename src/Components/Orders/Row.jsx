@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Row({ data }) {
   const [rowData, setRowData] = useState(data);
 
-  const { _id, bookId, img, date, expiry, returnDate } = data;
+  const { _id, bookId, img, date, expiry, returnDate } = rowData;
 
   const handleReturn = () => {
     setRowData((prevData) => {
