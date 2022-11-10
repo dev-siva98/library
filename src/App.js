@@ -35,7 +35,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <LoginContext.Provider value={{ isAdmin, isLoggedIn, setIsLoggedIn }}>
+        <LoginContext.Provider
+          value={{ isAdmin, setIsAdmin, isLoggedIn, setIsLoggedIn }}
+        >
           <Navbar isAdmin={isAdmin} />
           <Routes>
             <Route index element={<Login />} />

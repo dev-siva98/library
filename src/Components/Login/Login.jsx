@@ -1,6 +1,6 @@
 import axios from "../../axios";
 import React, { useState, useRef, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Constants from "../../constants.json";
 import "./Login.css";
 import { LoginContext } from "../../AppContext";
@@ -12,7 +12,9 @@ function Login() {
   });
   const [loginError, setLoginError] = useState(false); //set if invalid credentials
 
-  const { setIsLoggedIn } = useContext(LoginContext);
+  const { setIsLoggedIn, setIsAdmin } = useContext(LoginContext);
+
+  const navigate = useNavigate();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -38,6 +40,7 @@ function Login() {
       })
         .then((response) => {
           if (response.data) {
+            console.log(response.data);
             setLoginError(false);
 
             localStorage.setItem(
@@ -56,11 +59,19 @@ function Login() {
             );
 
             localStorage.setItem(
-              Constants.LOCALSTORAGE_TOKEN_USERTYPE,
-              response.data.type
+              Constants.LOCALSTORAGE_TOKEN_USER_ROLE,
+              response.data.role
             );
 
             setIsLoggedIn(true);
+
+            if (response.data.role === Constants.USERTYPE_ADMIN) {
+              setIsAdmin(true);
+              navigate("/admin");
+            } else {
+              setIsAdmin(false);
+              navigate("/user");
+            }
           } else {
             setLoginError(true);
             setIsLoggedIn(false);

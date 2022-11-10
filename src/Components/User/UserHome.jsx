@@ -1,20 +1,41 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import BookCard from "./BookCard/BookCard";
 import "./Home.css";
 import { books } from "../../data";
+import { LoginContext } from "../../AppContext";
+import Constants from "../../constants.json";
+import { Link } from "react-router-dom";
 
 function UserHome() {
   const scrollRef = useRef();
 
+  const { isLoggedIn } = useContext(LoginContext);
+
   const handleScroll = () => {
-    scrollRef.current.scrollIntoView()
+    scrollRef.current.scrollIntoView();
   };
 
   return (
-    <div className="user-home-container">
+    <div className={isLoggedIn ? "" : "user-home-container"}>
       <div className="home-welcome">
-        <h1>Welcome Siva</h1>
-        <button className="btn btn-outline-info explore-button" onClick={handleScroll}>Explore</button>
+        {isLoggedIn ? (
+          <>
+            <h1>
+              Welcome
+              {localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_USERNAME)}
+            </h1>
+            <button
+              className="btn btn-outline-info explore-button"
+              onClick={handleScroll}
+            >
+              Explore
+            </button>
+          </>
+        ) : (
+          <h3>
+            <Link to={"/"}>Login</Link> to checkout book !!!
+          </h3>
+        )}
       </div>
       <div ref={scrollRef} className="cards-container">
         {books.map((book) => {
