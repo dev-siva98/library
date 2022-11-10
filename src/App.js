@@ -13,33 +13,28 @@ import Navbar from "./Components/Navbar/Navbar";
 import Orders from "./Components/Orders/Orders";
 import Profile from "./Components/Profile/Profile";
 import Signup from "./Components/Signup/Signup";
-import { loginContext } from "./loginContext";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  const loggedIn = { isLoggedIn, setIsLoggedIn };
-
   return (
     <div className="App">
       <BrowserRouter>
-        <loginContext.Provider value={loggedIn}>
-          <Navbar isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
-          <Routes>
-            <Route index element={<Login />} />
-            <Route path="/admin" element={<AdminHome />} />
-            <Route path="/admin/books" element={<AdminBooks />} />
-            <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/admin/orders" element={<AdminOrders />} />
-            <Route path="/admin/addbook" element={<AddBook />} />
-            <Route path="/admin/editbook/:bookId" element={<EditBook />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/user" element={<UserHome />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/orders" element={<Orders />} />
-          </Routes>
-        </loginContext.Provider>
+        <Navbar isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
+        <Routes>
+          <Route index element={<Login />} />
+          <Route path="/admin" element={<AdminHome />} />
+          <Route path="/admin/books" element={<AdminBooks />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
+          <Route path="/admin/addbook" element={<AddBook />} />
+          <Route path="/admin/editbook/:bookId" element={<EditBook />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/user" element={<UserHome />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/orders" element={<Orders />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );

@@ -36,8 +36,9 @@ function Login() {
           if (response.data) {
             setLoginError(false);
 
-            localStorage.setItem("userId", response.data._id);
             localStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("userId", response.data._id);
+            localStorage.setItem("userName", response.data.name);
           } else {
             setLoginError(true);
           }

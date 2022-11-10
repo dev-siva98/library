@@ -1,32 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import avatar from "../Images/avatar.png";
 import { Link } from "react-router-dom";
-import { loginContext } from "../../loginContext";
 
 function Navbar({ isAdmin }) {
   const [showDropdown, setShowDropdown] = useState(false); //to toggle dropdown menu
-  const { isLoggedIn, setIsLoggedin } = useContext(loginContext);
 
-  const handleLogout = () => {
-    setIsLoggedin(false);
-    console.log("is logged" + isLoggedIn)
-  };
+  // const handleLogout = () => {};
 
   return (
     <nav className="navbar navbar-dark bg-dark">
-      <Link
-        to={isLoggedIn ? (isAdmin ? "/admin" : "/user") : "/"}
-        className="nav-logo"
-      >
+      <Link to={isAdmin ? "/admin" : "/user"} className="nav-logo">
         <i className="bi bi-book-half"></i>
         <p> Library</p>
       </Link>
       <div className="nav-items">
-        <Link
-          className="nav-link"
-          to={isLoggedIn ? (isAdmin ? "/admin" : "/user") : "/"}
-        >
+        <Link className="nav-link" to={isAdmin ? "/admin" : "/user"}>
           Home
         </Link>
         {!isAdmin && (
@@ -54,8 +43,10 @@ function Navbar({ isAdmin }) {
             >
               Profile
             </Link>
-            {isLoggedIn ? (
-              <p className="navbar-logout" onClick={handleLogout}>Logout</p>
+            {/* {isLoggedIn ? (
+              <p className="navbar-logout" onClick={handleLogout}>
+                Logout
+              </p>
             ) : (
               <Link
                 to={"/"}
@@ -64,7 +55,7 @@ function Navbar({ isAdmin }) {
               >
                 Login
               </Link>
-            )}
+            )} */}
           </div>
         )}
       </div>
