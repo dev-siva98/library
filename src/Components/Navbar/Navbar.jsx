@@ -14,17 +14,17 @@ function Navbar() {
     setShowDropdown(!showDropdown);
     setIsLoggedIn(false);
     localStorage.clear();
-    navigate("/");
+    navigate("/login");
   };
 
   return (
     <nav className="navbar navbar-dark bg-dark">
-      <Link to={isAdmin ? "/admin" : "/user"} className="nav-logo">
+      <Link to={isAdmin ? "/admin" : "/"} className="nav-logo">
         <i className="bi bi-book-half"></i>
         <p>Library</p>
       </Link>
       <div className="nav-items">
-        <Link className="nav-link" to={isAdmin ? "/admin" : "/user"}>
+        <Link className="nav-link" to={isAdmin ? "/admin" : "/"}>
           Home
         </Link>
 
@@ -66,7 +66,7 @@ function Navbar() {
               </>
             ) : (
               <Link
-                to={"/"}
+                to={"/login"}
                 className="dropdown-link"
                 onClick={() => setShowDropdown(!showDropdown)}
               >

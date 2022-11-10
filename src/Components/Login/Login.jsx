@@ -70,7 +70,7 @@ function Login() {
               navigate("/admin");
             } else {
               setIsAdmin(false);
-              navigate("/user");
+              navigate("/");
             }
           } else {
             setLoginError(true);

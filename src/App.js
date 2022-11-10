@@ -40,7 +40,7 @@ function App() {
         >
           <Navbar isAdmin={isAdmin} />
           <Routes>
-            <Route index element={<Login />} />
+            <Route index element={<UserHome />} />
             <Route path="/admin" element={<AdminHome isAdmin={isAdmin} />} />
             <Route
               path="/admin/books"
@@ -63,7 +63,7 @@ function App() {
               element={<EditBook isAdmin={isAdmin} />}
             />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/user" element={<UserHome />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Orders />} />
           </Routes>

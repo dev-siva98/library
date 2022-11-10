@@ -2,6 +2,7 @@
   height: calc(100vh - 80px);
   overflow: hidden;
 }
+
 .home-welcome {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?&cs=tinysrgb&w=1260&h=750&dpr=1");
@@ -13,7 +14,12 @@
   justify-content: center;
 }
 
+.home-header-user {
+  margin-left: 10px;
+}
+
 .explore-button {
+  margin-top: 20px;
   padding: 8px 25px;
 }
 
