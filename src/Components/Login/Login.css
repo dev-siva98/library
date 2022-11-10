@@ -5,6 +5,7 @@
   padding: 20px 60px 40px 60px;
   border-radius: 10px;
   box-shadow: #0e1e251f 0px 2px 4px 0px, #0e1e2552 0px 2px 16px 0px;
+  position: relative;
 }
 
 .form-header {
@@ -12,6 +13,14 @@
   margin-bottom: 20px;
   font-size: 1.6rem;
   color: #555;
+}
+
+.login-form-error {
+  position: absolute;
+  color: #d61f12;
+  z-index: 99;
+  top: 50px ;
+  margin-left: 30px;
 }
 
 .login-action-container {

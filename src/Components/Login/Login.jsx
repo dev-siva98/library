@@ -1,3 +1,4 @@
+import axios from "../../axios";
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
@@ -7,6 +8,8 @@ function Login() {
     email: false,
     password: false,
   });
+  const [loginError, setLoginError] = useState(false);
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -18,19 +21,44 @@ function Login() {
 
     const errorSet = { ...errors };
 
-    if (email && password) {
-      const data = { email, password };
-      console.log(data);
-    }
-
     email ? (errorSet.email = false) : (errorSet.email = true);
     password ? (errorSet.password = false) : (errorSet.password = true);
-
     setErrors(errorSet);
+
+    if (email && password) {
+      const data = { email, password };
+      axios({
+        method: "post",
+        url: "/user/login",
+        data: data,
+      })
+        .then((response) => {
+          if (response.data) {
+            setLoginError(false);
+
+            localStorage.setItem("userId", response.data._id);
+            localStorage.setItem("isLoggedIn", true);
+          } else {
+            setLoginError(true);
+
+            errorSet.email = true;
+            errorSet.password = true;
+            setErrors(errorSet);
+          }
+        })
+        .catch((err) => {
+          console.log("Error" + err);
+        });
+    }
   };
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <h1 className="form-header">Login</h1>
+
+      {loginError && (
+        <p className="login-form-error">Invalid username or password</p>
+      )}
+
       <div className="form-floating mb-3">
         <input
           type="email"
