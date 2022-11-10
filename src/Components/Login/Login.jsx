@@ -1,6 +1,7 @@
 import axios from "../../axios";
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import Constants from "../../constants.json";
 import "./Login.css";
 
 function Login() {
@@ -36,9 +37,22 @@ function Login() {
           if (response.data) {
             setLoginError(false);
 
-            localStorage.setItem("isLoggedIn", true);
-            localStorage.setItem("userId", response.data._id);
-            localStorage.setItem("userName", response.data.name);
+            localStorage.setItem(Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN, JSON.stringify(true));
+
+            localStorage.setItem(
+              Constants.LOCALSTORAGE_TOKEN_USERID,
+              response.data._id
+            );
+
+            localStorage.setItem(
+              Constants.LOCALSTORAGE_TOKEN_USERNAME,
+              response.data.name
+            );
+
+            localStorage.setItem(
+              Constants.LOCALSTORAGE_TOKEN_USERTYPE,
+              response.data.type
+            );
           } else {
             setLoginError(true);
           }

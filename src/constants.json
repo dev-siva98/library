@@ -1,0 +1,8 @@
+{
+  "AVATAR_URL": "https://ui-avatars.com/api/?name=Siva&length=1&background=random&bold=true",
+  "LOCALSTORAGE_TOKEN_ISLOGGEDIN": "isLoggedIn",
+  "LOCALSTORAGE_TOKEN_USERID": "userId",
+  "LOCALSTORAGE_TOKEN_USERNAME": "userName",
+  "LOCALSTORAGE_TOKEN_USERTYPE": "userType",
+  "USERTYPE_ADMIN": "admin"
+}

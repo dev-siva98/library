@@ -1,10 +1,9 @@
 import React from "react";
 import EditProfle from "./EditProfile/EditProfle";
 import "./Profile.css";
-import Constants from "../Constants/constants.json";
+import Constants from "../../constants.json";
 
 function Profile() {
-
   return (
     <div className="profile-container">
       <div className="sidebar">
@@ -20,14 +19,10 @@ function Profile() {
           </p>
         </div>
         <div className="sidebar-nav">
-          <p
-            className={"sidebar-link active"}
-          >
-            Settings
-          </p>
+          <p className={"sidebar-link active"}>Settings</p>
         </div>
       </div>
-      <EditProfle/>
+      <EditProfle />
     </div>
   );
 }

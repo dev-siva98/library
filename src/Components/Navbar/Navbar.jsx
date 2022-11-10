@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import avatar from "../Images/avatar.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { LoginContext } from "../../AppContext";
+import Constants from "../../constants.json";
 
 function Navbar({ isAdmin }) {
   const [showDropdown, setShowDropdown] = useState(false); //to toggle dropdown menu
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
 
-  // const handleLogout = () => {};
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setShowDropdown(!showDropdown);
+    setIsLoggedIn(false);
+
+    localStorage.clear();
+
+    localStorage.setItem(
+      Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN,
+      JSON.stringify(false)
+    );
+
+    navigate("/");
+  };
 
   return (
     <nav className="navbar navbar-dark bg-dark">
@@ -43,7 +60,8 @@ function Navbar({ isAdmin }) {
             >
               Profile
             </Link>
-            {/* {isLoggedIn ? (
+
+            {isLoggedIn ? (
               <p className="navbar-logout" onClick={handleLogout}>
                 Logout
               </p>
@@ -55,7 +73,7 @@ function Navbar({ isAdmin }) {
               >
                 Login
               </Link>
-            )} */}
+            )}
           </div>
         )}
       </div>
