@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import './AdminHome.css'
+import { LoginContext } from "../../AppContext";
+import "./AdminHome.css";
 
 function AdminHome() {
+  const { isAdmin, isLoggedIn } = useContext(LoginContext);
+
   return (
     <div className="admin-home-container home-welcome">
       <h1 className="admin-header">Hey Siva</h1>
-      <h2 className="admin-header-2">welcome to library management</h2>
-      <div className="admin-home-links">
-        <Link to={"/admin/books"} className="btn btn-outline-info">
-          Books
-        </Link>
-        <Link to={"/admin/users"} className="btn btn-outline-info">
-          Users
-        </Link>
-        <Link to={"/admin/orders"} className="btn btn-outline-info">
-          Orders
-        </Link>
-      </div>
+      {isAdmin ? (
+        <h2 className="admin-header-2">welcome to library management</h2>
+      ) : (
+        <h4>
+          You are not authorized to be here, go <Link to={"/"}>home</Link> buddy
+          !!!
+        </h4>
+      )}
+
+      {isAdmin && (
+        <div className="admin-home-links">
+          <Link to={"/admin/books"} className="btn btn-outline-info">
+            Books
+          </Link>
+          <Link to={"/admin/users"} className="btn btn-outline-info">
+            Users
+          </Link>
+          <Link to={"/admin/orders"} className="btn btn-outline-info">
+            Orders
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

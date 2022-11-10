@@ -38,29 +38,29 @@ function App() {
         <LoginContext.Provider
           value={{ isAdmin, setIsAdmin, isLoggedIn, setIsLoggedIn }}
         >
-          <Navbar isAdmin={isAdmin} />
+          <Navbar />
           <Routes>
             <Route index element={<UserHome />} />
-            <Route path="/admin" element={<AdminHome isAdmin={isAdmin} />} />
+            <Route path="/admin" element={<AdminHome />} />
             <Route
               path="/admin/books"
-              element={<AdminBooks isAdmin={isAdmin} />}
+              element={<AdminBooks />}
             />
             <Route
               path="/admin/users"
-              element={<AdminUsers isAdmin={isAdmin} />}
+              element={<AdminUsers />}
             />
             <Route
               path="/admin/orders"
-              element={<AdminOrders isAdmin={isAdmin} />}
+              element={<AdminOrders />}
             />
             <Route
               path="/admin/addbook"
-              element={<AddBook isAdmin={isAdmin} />}
+              element={<AddBook />}
             />
             <Route
               path="/admin/editbook/:bookId"
-              element={<EditBook isAdmin={isAdmin} />}
+              element={<EditBook />}
             />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
