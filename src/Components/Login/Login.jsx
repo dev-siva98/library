@@ -1,15 +1,18 @@
 import axios from "../../axios";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import Constants from "../../constants.json";
 import "./Login.css";
+import { LoginContext } from "../../AppContext";
 
 function Login() {
   const [errors, setErrors] = useState({
     email: false,
     password: false,
   });
-  const [loginError, setLoginError] = useState(false);
+  const [loginError, setLoginError] = useState(false); //set if invalid credentials
+
+  const { setIsLoggedIn } = useContext(LoginContext);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -37,7 +40,10 @@ function Login() {
           if (response.data) {
             setLoginError(false);
 
-            localStorage.setItem(Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN, JSON.stringify(true));
+            localStorage.setItem(
+              Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN,
+              JSON.stringify(true)
+            );
 
             localStorage.setItem(
               Constants.LOCALSTORAGE_TOKEN_USERID,
@@ -53,8 +59,13 @@ function Login() {
               Constants.LOCALSTORAGE_TOKEN_USERTYPE,
               response.data.type
             );
+
+            setIsLoggedIn(true);
           } else {
             setLoginError(true);
+            setIsLoggedIn(false);
+
+            localStorage.clear();
           }
         })
         .catch((err) => {
@@ -62,6 +73,7 @@ function Login() {
         });
     }
   };
+
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <h1 className="form-header">Login</h1>

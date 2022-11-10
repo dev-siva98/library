@@ -19,7 +19,7 @@ import { LoginContext } from "./AppContext";
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-console.log("......")
+
   useEffect(() => {
     setIsLoggedIn(
       JSON.parse(localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN))
@@ -30,13 +30,12 @@ console.log("......")
         Constants.LOCALSTORAGE_TOKEN_USERTYPE === Constants.USERTYPE_ADMIN
       )
     );
-    console.log(isAdmin, isLoggedIn);
   }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
-        <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <LoginContext.Provider value={{ isAdmin, isLoggedIn, setIsLoggedIn }}>
           <Navbar isAdmin={isAdmin} />
           <Routes>
             <Route index element={<Login />} />

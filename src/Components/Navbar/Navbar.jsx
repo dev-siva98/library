@@ -13,19 +13,10 @@ function Navbar({ isAdmin }) {
 
   const handleLogout = () => {
     setShowDropdown(!showDropdown);
-    console.log("///////",setIsLoggedIn);
     setIsLoggedIn(false);
     localStorage.clear();
-
-    // localStorage.setItem(
-    //   Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN,
-    //   JSON.stringify(false)
-    // );
-
     navigate("/");
   };
-
-  console.log(isLoggedIn);
 
   return (
     <nav className="navbar navbar-dark bg-dark">
