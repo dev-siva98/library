@@ -40,10 +40,6 @@ function Login() {
             localStorage.setItem("isLoggedIn", true);
           } else {
             setLoginError(true);
-
-            errorSet.email = true;
-            errorSet.password = true;
-            setErrors(errorSet);
           }
         })
         .catch((err) => {
@@ -55,14 +51,16 @@ function Login() {
     <form className="login-form" onSubmit={handleSubmit}>
       <h1 className="form-header">Login</h1>
 
-      {loginError && (
-        <p className="login-form-error">Invalid username or password</p>
-      )}
+      <div className="form-error-container">
+        {loginError && <p>Invalid email or password</p>}
+      </div>
 
       <div className="form-floating mb-3">
         <input
           type="email"
-          className={`form-control ${errors.email ? "is-invalid" : ""}`}
+          className={`form-control ${
+            errors.email || loginError ? "is-invalid" : ""
+          }`}
           id="email"
           placeholder="name@example.com"
           required={true}
@@ -73,7 +71,9 @@ function Login() {
       <div className="form-floating">
         <input
           type="password"
-          className={`form-control ${errors.password ? "is-invalid" : ""}`}
+          className={`form-control ${
+            errors.password || loginError ? "is-invalid" : ""
+          }`}
           id="password"
           placeholder="Password"
           required={true}

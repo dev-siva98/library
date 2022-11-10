@@ -7,14 +7,21 @@
   box-shadow: #0e1e251f 0px 2px 4px 0px, #0e1e2552 0px 2px 16px 0px;
 }
 
+.form-error-container {
+  height: 20px;
+  text-align: center;
+  color: #d61f12;
+  margin-bottom: 10px;
+}
+
 .form-action-container {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .form-action-container p {
-    margin: 0;
+  margin: 0;
 }
 
 .swap-link {
-    margin-left: 5px;
+  margin-left: 5px;
 }

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./Signup.css";
 import { Link } from "react-router-dom";
+import axios from "../../axios";
 
 function Signup() {
   const [errors, setErrors] = useState({
@@ -9,6 +10,7 @@ function Signup() {
     password: false,
     confirmPassword: false,
   });
+  const [signupError, setSignupError] = useState(false);
 
   const nameRef = useRef();
   const emailRef = useRef();
@@ -26,6 +28,8 @@ function Signup() {
     const confirmPassword = confirmRef.current.value.trim();
 
     const errorSet = { ...errors };
+    name ? (errorSet.name = false) : (errorSet.name = true);
+    setErrors(errorSet);
 
     if (name && email && dob && password && confirmPassword) {
       if (password === confirmPassword) {
@@ -34,8 +38,20 @@ function Signup() {
           email,
           dob,
           password,
+          role: "USER",
         };
-        console.log(data);
+
+        axios({
+          method: "post",
+          url: "/user/signup",
+          data: data,
+        }).then((response) => {
+          if (response.data) {
+            alert("created");
+          } else {
+            setSignupError(true);
+          }
+        });
       } else {
         // passwords not matching, setting error on both true
 
@@ -44,15 +60,16 @@ function Signup() {
         alert("Passwords should match");
       }
     }
-
-    name ? (errorSet.name = false) : (errorSet.name = true);
-
-    setErrors(errorSet);
   };
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <h1 className="form-header">Create account</h1>
+      <div className="form-error-container">
+        {signupError && (
+          <p className="signup-error-message">Email is already taken</p>
+        )}
+      </div>
       <div className="form-floating mb-2">
         <input
           type="text"
@@ -69,7 +86,9 @@ function Signup() {
         <input
           type="email"
           id="email"
-          className={`form-control ${errors.email ? "is-invalid" : ""}`}
+          className={`form-control ${
+            errors.email || signupError ? "is-invalid" : ""
+          }`}
           placeholder="example@example.com"
           required={true}
           ref={emailRef}
