@@ -19,8 +19,7 @@ import { LoginContext } from "./AppContext";
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  console.log("app hit")
+console.log("......")
   useEffect(() => {
     setIsLoggedIn(
       JSON.parse(localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN))
@@ -31,6 +30,7 @@ function App() {
         Constants.LOCALSTORAGE_TOKEN_USERTYPE === Constants.USERTYPE_ADMIN
       )
     );
+    console.log(isAdmin, isLoggedIn);
   }, []);
 
   return (

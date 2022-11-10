@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import avatar from "../Images/avatar.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,17 +13,19 @@ function Navbar({ isAdmin }) {
 
   const handleLogout = () => {
     setShowDropdown(!showDropdown);
+    console.log("///////",setIsLoggedIn);
     setIsLoggedIn(false);
-
     localStorage.clear();
 
-    localStorage.setItem(
-      Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN,
-      JSON.stringify(false)
-    );
+    // localStorage.setItem(
+    //   Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN,
+    //   JSON.stringify(false)
+    // );
 
     navigate("/");
   };
+
+  console.log(isLoggedIn);
 
   return (
     <nav className="navbar navbar-dark bg-dark">
