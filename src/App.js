@@ -25,12 +25,18 @@ function App() {
       JSON.parse(localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN))
     );
 
+    console.log(
+      localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_USER_ROLE),
+      Constants.USERTYPE_ADMIN
+    );
+
     setIsAdmin(
-      localStorage.getItem(
-        Constants.LOCALSTORAGE_TOKEN_USERTYPE === Constants.USERTYPE_ADMIN
-      )
+      localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_USER_ROLE) ===
+        Constants.USERTYPE_ADMIN
     );
   }, []);
+
+  console.log(isAdmin);
 
   return (
     <div className="App">
@@ -42,26 +48,11 @@ function App() {
           <Routes>
             <Route index element={<UserHome />} />
             <Route path="/admin" element={<AdminHome />} />
-            <Route
-              path="/admin/books"
-              element={<AdminBooks />}
-            />
-            <Route
-              path="/admin/users"
-              element={<AdminUsers />}
-            />
-            <Route
-              path="/admin/orders"
-              element={<AdminOrders />}
-            />
-            <Route
-              path="/admin/addbook"
-              element={<AddBook />}
-            />
-            <Route
-              path="/admin/editbook/:bookId"
-              element={<EditBook />}
-            />
+            <Route path="/admin/books" element={<AdminBooks />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/orders" element={<AdminOrders />} />
+            <Route path="/admin/addbook" element={<AddBook />} />
+            <Route path="/admin/editbook/:bookId" element={<EditBook />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
