@@ -25,18 +25,11 @@ function App() {
       JSON.parse(localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN))
     );
 
-    console.log(
-      localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_USER_ROLE),
-      Constants.USERTYPE_ADMIN
-    );
-
     setIsAdmin(
       localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_USER_ROLE) ===
         Constants.USERTYPE_ADMIN
     );
   }, []);
-
-  console.log(isAdmin);
 
   return (
     <div className="App">

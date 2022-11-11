@@ -29,7 +29,17 @@ function Navbar() {
         </Link>
 
         {isAdmin ? (
-          <></>
+          <>
+            <Link className="nav-link" to={"/admin/books"}>
+              Books
+            </Link>
+            <Link className="nav-link" to={"/admin/users"}>
+              Users
+            </Link>
+            <Link className="nav-link" to={"/admin/orders"}>
+              Orders
+            </Link>
+          </>
         ) : (
           isLoggedIn && (
             <Link className="nav-link" to={"/orders"}>
