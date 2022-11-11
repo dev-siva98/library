@@ -3,7 +3,7 @@ import Header from "./Header";
 import Row from "./Row";
 import "./Table.css";
 
-function Table({ headers, body, rows, edit, handleUpdate }) {
+function Table({ headers, body, rows, handleUpdate }) {
   return (
     <table className="table table-hover">
       <thead>
@@ -19,7 +19,6 @@ function Table({ headers, body, rows, edit, handleUpdate }) {
             <Row
               row={row}
               body={body}
-              edit={edit}
               key={index}
               handleUpdate={handleUpdate}
             />

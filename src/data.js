@@ -205,25 +205,9 @@ export const allOrders = [
   },
 ];
 
-export const adminOrderHeaders = [
-  "OrderId",
-  "UserId",
-  "BookId",
-  "Date taken",
-  "Return date",
-];
+export const adminUserHeaders = ["UserId", "Name", "Email", "Date of birth", "Joined on"];
 
-export const adminOrderBody = ["userId", "bookId", "date", "returnDate"];
-
-export const adminUserHeaders = [
-  "UserId",
-  "Name",
-  "Email",
-  "Date of birth",
-  "Joined at",
-];
-
-export const adminUserBody = ["name", "email", "dob", "createdAt"];
+export const adminUserBody = [  "name", "email", "dob", "createdAt"];
 
 export const adminBookHeaders = [
   "BookId",
@@ -232,31 +216,14 @@ export const adminBookHeaders = [
   "Genre",
   "ISBN No",
   "Total copies",
-  "Copies Available"
+  "Copies Available",
 ];
 
-export const adminBookBody = ["title", "author", "genre", "isbnNo", "totalCopies", "copiesAvailable"];
-
-export const orders = [
-  {
-    _id: "OD001",
-    bookId: "BN001",
-    date: "05-11-2022",
-    expiry: "19-11-2022",
-    returnDate: "",
-  },
-  {
-    _id: "OD002",
-    bookId: "BN002",
-    date: "06-11-2022",
-    expiry: "19-11-2022",
-    returnDate: "15-11-2022",
-  },
-  {
-    _id: "OD003",
-    bookId: "BN003",
-    date: "07-11-2022",
-    expiry: "19-11-2022",
-    returnDate: "17-11-2022",
-  },
+export const adminBookBody = [
+  "title",
+  "author",
+  "genre",
+  "isbnNo",
+  "totalCopies",
+  "copiesAvailable",
 ];

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Row({ data }) {
   const [rowData, setRowData] = useState(data);
 
-  const { _id, bookId, img, date, expiry, returnDate } = rowData;
+  const { _id, bookId, img, date, expiry } = rowData;
 
   const handleReturn = () => {
     setRowData((prevData) => {
@@ -25,16 +25,9 @@ function Row({ data }) {
       <td>{date}</td>
       <td>{expiry}</td>
       <td>
-        {returnDate ? (
-          returnDate
-        ) : (
-          <button onClick={handleReturn} className="btn btn-primary">
-            Return now
-          </button>
-        )}
-      </td>
-      <td>
-        <button className="btn btn-primary">view</button>
+        <button onClick={handleReturn} className="btn btn-primary">
+          Return now
+        </button>
       </td>
     </tr>
   );

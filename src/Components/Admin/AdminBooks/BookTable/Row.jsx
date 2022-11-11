@@ -1,8 +1,8 @@
-import axios from "../../axios";
+import axios from "../../../../axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Row({ body, row, edit, handleUpdate }) {
+function Row({ body, row, handleUpdate }) {
   const handleDelete = (bookId) => {
     const confirmDelete = window.confirm(
       "Do you want to delete " + row._id + " ?"
@@ -33,22 +33,20 @@ function Row({ body, row, edit, handleUpdate }) {
         return <td key={index}>{row[column]}</td>;
       })}
 
-      {edit && (
-        <td>
-          <Link
-            to={`/admin/editbook/${row._id}`}
-            className="btn btn-primary row-edit"
-          >
-            <i className="bi bi-pencil-fill"></i>
-          </Link>
-          <button
-            onClick={() => handleDelete(row._id)}
-            className="btn btn-danger"
-          >
-            <i className="bi bi-trash-fill"></i>
-          </button>
-        </td>
-      )}
+      <td>
+        <Link
+          to={`/admin/editbook/${row._id}`}
+          className="btn btn-primary row-edit"
+        >
+          <i className="bi bi-pencil-fill"></i>
+        </Link>
+        <button
+          onClick={() => handleDelete(row._id)}
+          className="btn btn-danger"
+        >
+          <i className="bi bi-trash-fill"></i>
+        </button>
+      </td>
     </tr>
   );
 }

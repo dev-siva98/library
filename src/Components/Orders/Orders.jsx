@@ -1,6 +1,5 @@
 import React from "react";
 import Row from "./Row";
-import { orders } from "../../data";
 
 function Orders() {
   return (
@@ -12,13 +11,12 @@ function Orders() {
           <th scope="col">Image</th>
           <th scope="col">Date</th>
           <th scope="col">Last date</th>
-          <th scope="col">Returned date</th>
         </tr>
       </thead>
       <tbody>
-        {orders.map((row) => {
+        {/* {orders.map((row) => {
           return <Row data={row} key={row._id} />;
-        })}
+        })} */}
       </tbody>
     </table>
   );
