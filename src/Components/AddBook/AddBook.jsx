@@ -136,8 +136,11 @@ function AddBook() {
         <label htmlFor="img">Image</label>
       </div>
 
-      <div className="form-action-container">
-        <button type="submit" className="btn btn-primary">
+      <div className="book-form-actions">
+        <button className="btn btn-primary book-reset-button" type="reset">
+          Reset
+        </button>
+        <button type="submit" className="btn btn-primary book-save-button">
           Save
         </button>
       </div>

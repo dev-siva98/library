@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "../../axios";
 function EditBook() {
   const [errors, setErrors] = useState({
@@ -12,6 +12,8 @@ function EditBook() {
   const [inputChanged, setInputChanged] = useState(false); //detect input change to enable save button
 
   const { bookId } = useParams(); //get bookId from params
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -61,8 +63,10 @@ function EditBook() {
         data: data,
       })
         .then((response) => {
-          if (response.data) alert(title + "-- details edited");
-          else alert("Database error - failed to update book details");
+          if (response.data) {
+            alert(title + "-- details updated");
+            navigate("/admin/books");
+          } else alert("Database error - failed to update book details");
         })
         .catch((err) => console.log("Error " + err));
     }
@@ -157,11 +161,19 @@ function EditBook() {
         <label htmlFor="img">Image Url</label>
       </div>
 
-      <div className="form-action-container">
+      <div className="book-form-actions">
+        <button
+          disabled={!inputChanged}
+          className="btn btn-primary"
+          type="reset"
+          onClick={() => setInputChanged(false)}
+        >
+          Reset
+        </button>
         <button
           disabled={!inputChanged}
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-primary book-save-button"
         >
           Save
         </button>

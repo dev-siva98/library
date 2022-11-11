@@ -1,0 +1,14 @@
+.book-form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.book-save-button {
+    width: 70px;
+}
+
+.book-reset-button {
+    width: 70px;
+}
