@@ -1,9 +1,28 @@
+import axios from "../../axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Row({ body, row, edit }) {
+function Row({ body, row, edit, handleUpdate }) {
   const handleDelete = (bookId) => {
-    console.log(bookId);
+    const confirmDelete = window.confirm(
+      "Do you want to delete " + row._id + " ?"
+    );
+
+    if (!confirmDelete) return;
+
+    axios
+      .delete(`/book/delete/${bookId}`)
+      .then((response) => {
+        if (response.data) {
+          alert("Deleted");
+          handleUpdate();
+        } else {
+          alert("Error deleting");
+        }
+      })
+      .catch((err) => {
+        console.log("Error " + err);
+      });
   };
 
   return (

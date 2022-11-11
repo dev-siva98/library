@@ -3,7 +3,7 @@ import Header from "./Header";
 import Row from "./Row";
 import "./Table.css";
 
-function Table({ headers, body, rows, edit }) {
+function Table({ headers, body, rows, edit, handleUpdate }) {
   return (
     <table className="table table-hover">
       <thead>
@@ -15,7 +15,15 @@ function Table({ headers, body, rows, edit }) {
       </thead>
       <tbody>
         {rows.map((row, index) => {
-          return <Row row={row} body={body} edit={edit} key={index} />;
+          return (
+            <Row
+              row={row}
+              body={body}
+              edit={edit}
+              key={index}
+              handleUpdate={handleUpdate}
+            />
+          );
         })}
       </tbody>
     </table>

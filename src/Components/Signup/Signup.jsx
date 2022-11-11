@@ -140,7 +140,7 @@ function Signup() {
         </button>
         <p>
           Already have an account ?{" "}
-          <Link to={"/"} className="swap-link">
+          <Link to={"/login"} className="swap-link">
             Login
           </Link>
         </p>
