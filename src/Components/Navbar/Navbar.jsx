@@ -9,7 +9,7 @@ function Navbar() {
   const { isAdmin, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
 
   const navigate = useNavigate();
-  console.log(isAdmin);
+
   const handleLogout = () => {
     setShowDropdown(!showDropdown);
     setIsLoggedIn(false);

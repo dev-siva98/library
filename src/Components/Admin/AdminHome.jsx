@@ -8,14 +8,22 @@ function AdminHome() {
 
   return (
     <div className="admin-home-container home-welcome">
-      <h1 className="admin-header">Hey Siva</h1>
-      {isAdmin ? (
-        <h2 className="admin-header-2">welcome to library management</h2>
+      {isLoggedIn ? (
+        <>
+          <h1 className="admin-header">Hey Siva</h1>
+          {isAdmin ? (
+            <h2 className="admin-header-2">welcome to library management</h2>
+          ) : (
+            <h4>
+              You are not authorized to be here, go <Link to={"/"}>home</Link>{" "}
+              buddy !!!
+            </h4>
+          )}
+        </>
       ) : (
-        <h4>
-          You are not authorized to be here, go <Link to={"/"}>home</Link> buddy
-          !!!
-        </h4>
+        <h3>
+          <Link to={"/login"}>Login</Link> to manage library !!!
+        </h3>
       )}
 
       {isAdmin && (

@@ -231,10 +231,11 @@ export const adminBookHeaders = [
   "Author",
   "Genre",
   "ISBN No",
-  "Copies Available",
+  "Total copies",
+  "Copies Available"
 ];
 
-export const adminBookBody = ["title", "author", "genre", "isbnNo", "copies"];
+export const adminBookBody = ["title", "author", "genre", "isbnNo", "totalCopies", "copiesAvailable"];
 
 export const orders = [
   {

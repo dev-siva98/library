@@ -1,3 +1,4 @@
+import axios from "../../axios";
 import React, { useRef, useState } from "react";
 import "./AddBook.css";
 
@@ -8,6 +9,8 @@ function AddBook() {
     genre: false,
     img: false,
   });
+
+  const [isbnError, setIsbnError] = useState(false);
 
   const titleRef = useRef();
   const authorRef = useRef();
@@ -25,20 +28,8 @@ function AddBook() {
     const author = authorRef.current.value.trim();
     const isbnNo = isbnRef.current.value;
     const genre = genreRef.current.value.trim();
-    const img = imgRef.current.value();
-    const copies = copiesRef.current.value;
-
-    if (title && author && isbnNo && genre && img && copies) {
-      const data = {
-        title,
-        author,
-        isbnNo,
-        genre,
-        img,
-        copies,
-      };
-      console.log(data);
-    }
+    const img = imgRef.current.value.trim();
+    const totalCopies = copiesRef.current.value;
 
     title ? (errorSet.title = false) : (errorSet.title = true);
     author ? (errorSet.author = false) : (errorSet.author = true);
@@ -46,11 +37,38 @@ function AddBook() {
     img ? (errorSet.img = false) : (errorSet.img = true);
 
     setErrors(errorSet);
+
+    if (title && author && isbnNo && genre && img && totalCopies) {
+      const data = {
+        title,
+        author,
+        isbnNo,
+        genre,
+        img,
+        totalCopies,
+      };
+
+      axios({
+        method: "post",
+        url: "/book/addbook",
+        data: data,
+      })
+        .then((response) => {
+          if (response.data) {
+            setIsbnError(false);
+            alert(title + " added");
+          } else setIsbnError(true);
+        })
+        .catch((err) => console.log("Error " + err));
+    }
   };
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <h1 className="form-header">Add book</h1>
+      <div className="form-error-container">
+        {isbnError && <p>This book is already added</p>}
+      </div>
       <div className="form-floating mb-2">
         <input
           type="text"
@@ -77,7 +95,7 @@ function AddBook() {
         <input
           type="number"
           id="isbn"
-          className="form-control"
+          className={`form-control ${isbnError ? "is-invalid" : ""}`}
           required
           ref={isbnRef}
           minLength={8}
@@ -99,13 +117,13 @@ function AddBook() {
       <div className="form-floating mb-2">
         <input
           type="number"
-          id="copies"
+          id="totalCopies"
           className="form-control"
           required
           ref={copiesRef}
           min={0}
         />
-        <label htmlFor="copies">Copies available</label>
+        <label htmlFor="totalCopies">Total copies</label>
       </div>
 
       <div className="form-floating mb-2">

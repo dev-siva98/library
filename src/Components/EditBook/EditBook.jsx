@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { books } from "../../data";
 import { useParams } from "react-router-dom";
+import axios from "../../axios";
 function EditBook() {
   const [errors, setErrors] = useState({
     title: false,
@@ -10,12 +10,14 @@ function EditBook() {
   });
   const [book, setBook] = useState();
   const [inputChanged, setInputChanged] = useState(false); //detect input change to enable save button
+
   const { bookId } = useParams(); //get bookId from params
 
   useEffect(() => {
-    books.forEach((book) => {
-      if (book._id === bookId) setBook(book);
-    });
+    axios
+      .get(`/book/get/${bookId}`)
+      .then((response) => setBook(response.data))
+      .catch((err) => console.log("Error " + err));
   }, []);
 
   const titleRef = useRef();
@@ -23,7 +25,7 @@ function EditBook() {
   const isbnRef = useRef();
   const genreRef = useRef();
   const imgRef = useRef();
-  const copiesRef = useRef();
+  const totalCopiesRef = useRef();
 
   const handleChange = (e, value) => {
     if (e.target.value.trim() !== value) setInputChanged(true);
@@ -37,22 +39,32 @@ function EditBook() {
     const author = authorRef.current.value.trim();
     const isbnNo = isbnRef.current.value;
     const genre = genreRef.current.value.trim();
-    const copies = copiesRef.current.value;
-    const img = imgRef.current.value;
+    const totalCopies = totalCopiesRef.current.value;
+    const img = imgRef.current.value.trim();
 
     const errorSet = { ...errors };
 
-    if (title && author && isbnNo && genre && copies && img) {
+    if (title && author && isbnNo && genre && totalCopies && img) {
       //validate fields have values to aviod overriting with empty values
       const data = {
         title,
         author,
         isbnNo,
         genre,
-        copies,
+        totalCopies,
         img,
       };
-      console.log(data);
+
+      axios({
+        method: "put",
+        url: `/book/update/${bookId}`,
+        data: data,
+      })
+        .then((response) => {
+          if (response.data) alert(title + "-- details edited");
+          else alert("Database error - failed to update book details");
+        })
+        .catch((err) => console.log("Error " + err));
     }
 
     title ? (errorSet.title = false) : (errorSet.title = true);
@@ -122,15 +134,15 @@ function EditBook() {
       <div className="form-floating mb-2">
         <input
           type="number"
-          id="copies"
+          id="totalCopies"
           className="form-control"
-          ref={copiesRef}
+          ref={totalCopiesRef}
           required
           min={0}
-          defaultValue={book?.copies}
-          onChange={(e) => handleChange(e, book.copies)}
+          defaultValue={book?.totalCopies}
+          onChange={(e) => handleChange(e, book.totalCopies)}
         />
-        <label htmlFor="copies">Copies available</label>
+        <label htmlFor="totalCopies">Copies available</label>
       </div>
 
       <div className="form-floating mb-2">
