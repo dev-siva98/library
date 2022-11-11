@@ -34,9 +34,6 @@ function AdminHome() {
           <Link to={"/admin/users"} className="btn btn-outline-info">
             Users
           </Link>
-          <Link to={"/admin/orders"} className="btn btn-outline-info">
-            Orders
-          </Link>
         </div>
       )}
     </div>

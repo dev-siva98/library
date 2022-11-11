@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios";
 
 function Signup() {
@@ -17,6 +17,8 @@ function Signup() {
   const dobRef = useRef();
   const passwordRef = useRef();
   const confirmRef = useRef();
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +50,7 @@ function Signup() {
         }).then((response) => {
           if (response.data) {
             alert("created");
+            navigate("/login");
           } else {
             setSignupError(true);
           }

@@ -5,7 +5,6 @@ import Constants from "./constants.json";
 import AddBook from "./Components/AddBook/AddBook";
 import AdminBooks from "./Components/Admin/AdminBooks";
 import AdminHome from "./Components/Admin/AdminHome";
-import AdminOrders from "./Components/Admin/AdminOrders";
 import AdminUsers from "./Components/Admin/AdminUsers";
 import EditBook from "./Components/EditBook/EditBook";
 import UserHome from "./Components/User/UserHome";
@@ -43,7 +42,6 @@ function App() {
             <Route path="/admin" element={<AdminHome />} />
             <Route path="/admin/books" element={<AdminBooks />} />
             <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/admin/orders" element={<AdminOrders />} />
             <Route path="/admin/addbook" element={<AddBook />} />
             <Route path="/admin/editbook/:bookId" element={<EditBook />} />
             <Route path="/signup" element={<Signup />} />

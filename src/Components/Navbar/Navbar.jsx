@@ -36,9 +36,6 @@ function Navbar() {
             <Link className="nav-link" to={"/admin/users"}>
               Users
             </Link>
-            <Link className="nav-link" to={"/admin/orders"}>
-              Orders
-            </Link>
           </>
         ) : (
           isLoggedIn && (
