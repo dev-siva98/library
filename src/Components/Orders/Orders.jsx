@@ -1,5 +1,5 @@
 import React from "react";
-import Row from "./Row";
+// import Row from "./Row";
 
 function Orders() {
   return (
@@ -15,7 +15,7 @@ function Orders() {
       </thead>
       <tbody>
         {/* {orders.map((row) => {
-          return <Row data={row} key={row._id} />;
+          return <Row data={row} key={row.id} />;
         })} */}
       </tbody>
     </table>

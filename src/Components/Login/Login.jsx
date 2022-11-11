@@ -50,7 +50,7 @@ function Login() {
 
             localStorage.setItem(
               Constants.LOCALSTORAGE_TOKEN_USERID,
-              response.data._id
+              response.data.id
             );
 
             localStorage.setItem(

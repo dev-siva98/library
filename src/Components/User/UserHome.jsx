@@ -51,7 +51,7 @@ function UserHome() {
       </div>
       <div ref={scrollRef} className="cards-container">
         {books.map((book) => {
-          return <BookCard book={book} key={book._id} />;
+          return <BookCard book={book} key={book.id} />;
         })}
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 
 function ConfirmationModal({ bookDetails, show, onHide }) {
-  const { _id, title, author, genre, isbnNo, img } = bookDetails;
+  const { id, title, author, genre, isbnNo, img } = bookDetails;
 
   const handleCheckout = () => {
     alert("Gotcha!!!");
@@ -22,7 +22,7 @@ function ConfirmationModal({ bookDetails, show, onHide }) {
             <h5 className="card-title">{title}</h5>
             <p className="card-text">By {author}</p>
             <p className="card-text">{genre}</p>
-            <p className="card-text">Id : {_id}</p>
+            <p className="card-text">Id : {id}</p>
             <p className="card-text">ISBN : {isbnNo}</p>
           </div>
         </div>

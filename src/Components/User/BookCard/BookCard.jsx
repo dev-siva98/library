@@ -4,7 +4,7 @@ import ConfirmationModal from "./ConfirmationModal";
 
 function BookCard({ book }) {
   const [modalShow, setModalShow] = useState(false);
-  const { _id, title, author, isbnNo, genre, img, copiesAvailable } = book;
+  const { id, title, author, isbnNo, genre, img, copiesAvailable } = book;
 
   return (
     <div className="card book-card">
@@ -13,7 +13,7 @@ function BookCard({ book }) {
         <h5 className="card-title">{title}</h5>
         <p className="card-text">By {author}</p>
         <p className="card-text">{genre}</p>
-        <p className="card-text">Id : {_id}</p>
+        <p className="card-text">Id : {id}</p>
         <p className="card-text">ISBN : {isbnNo}</p>
         {copiesAvailable > 0 ? (
           <button
