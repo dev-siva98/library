@@ -1,12 +1,27 @@
+import axios from "../../../axios";
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
+import Constants from "../../../constants.json";
 
 function ConfirmationModal({ bookDetails, show, onHide }) {
-  const { id, title, author, genre, isbnNo, img } = bookDetails;
+  const { id, title, author, genre, isbnNumber, imageUrl } = bookDetails;
 
   const handleCheckout = () => {
-    alert("Gotcha!!!");
-    onHide();
+    axios
+      .put(
+        `/user/checkout/${localStorage.getItem(
+          Constants.LOCALSTORAGE_KEY_USERID
+        )}/${id}`
+      )
+      .then((response) => {
+        if (!response.data) {
+          alert("You already have 2 books with you!!");
+        }
+        onHide();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -17,13 +32,13 @@ function ConfirmationModal({ bookDetails, show, onHide }) {
       <Modal.Body>
         <h4 style={{ textAlign: "center" }}>Book Details</h4>
         <div className="modal-book-container">
-          <img src={img} className="card-img-top" alt="" />
+          <img src={imageUrl} className="card-img-top" alt="" />
           <div className="modal-book-details">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">By {author}</p>
             <p className="card-text">{genre}</p>
             <p className="card-text">Id : {id}</p>
-            <p className="card-text">ISBN : {isbnNo}</p>
+            <p className="card-text">ISBN : {isbnNumber}</p>
           </div>
         </div>
       </Modal.Body>

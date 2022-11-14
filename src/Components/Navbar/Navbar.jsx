@@ -60,13 +60,6 @@ function Navbar() {
           <div className="dropdown-items">
             {isLoggedIn ? (
               <>
-                <Link
-                  to={"/profile"}
-                  className="dropdown-link"
-                  onClick={() => setShowDropdown(!showDropdown)}
-                >
-                  Profile
-                </Link>
                 <p className="navbar-logout" onClick={handleLogout}>
                   Logout
                 </p>

@@ -8,6 +8,8 @@ import axios from "../../axios";
 
 function UserHome() {
   const [books, setBooks] = useState([]);
+  const [userDetails, setUserDetails] = useState();
+
   const navigate = useNavigate();
 
   const scrollRef = useRef();
@@ -16,11 +18,23 @@ function UserHome() {
 
   useEffect(() => {
     if (isAdmin) navigate("/admin");
+
+    axios
+      .get(
+        `/user/get/${localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERID)}`
+      )
+      .then((response) => {
+        setUserDetails(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     axios
       .get("/book/get/all")
       .then((response) => setBooks(response.data))
       .catch((err) => console.log("Error " + err));
-  });
+  }, []);
 
   const handleScroll = () => {
     scrollRef.current.scrollIntoView();
@@ -34,9 +48,7 @@ function UserHome() {
           <>
             <h1>
               Welcome
-              <span className="home-header-user">
-                {localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERNAME)}
-              </span>
+              <span className="home-header-user">{userDetails?.userName}</span>
             </h1>
             {isAdmin}
             <button
@@ -54,7 +66,9 @@ function UserHome() {
       </div>
       <div ref={scrollRef} className="cards-container">
         {books.map((book) => {
-          return <BookCard book={book} key={book.id} />;
+          return (
+            <BookCard book={book} userDetails={userDetails} key={book.id} />
+          );
         })}
       </div>
     </div>
