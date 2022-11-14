@@ -3,6 +3,7 @@ import "./Navbar.css";
 import avatar from "../Images/avatar.png";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../AppContext";
+import Constants from "../../constants.json";
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false); //to toggle dropdown menu
@@ -49,7 +50,16 @@ function Navbar() {
           className="nav-link dropdown-pointer"
           onClick={() => setShowDropdown(!showDropdown)}
         >
-          <img className="nav-avatar" src={avatar} alt="" />
+          <img
+            className="nav-avatar"
+            src={
+              isLoggedIn
+                ? Constants.AVATAR_URL + //base string + name
+                  localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERNAME)
+                : avatar //blank avatar
+            }
+            alt=""
+          />
           <i
             className={
               showDropdown ? "bi bi-caret-up-fill" : "bi bi-caret-down-fill"

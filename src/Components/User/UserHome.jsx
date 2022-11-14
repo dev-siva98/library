@@ -64,13 +64,15 @@ function UserHome() {
           </h3>
         )}
       </div>
-      <div ref={scrollRef} className="cards-container">
-        {books.map((book) => {
-          return (
-            <BookCard book={book} userDetails={userDetails} key={book.id} />
-          );
-        })}
-      </div>
+      {isLoggedIn && (
+        <div ref={scrollRef} className="cards-container">
+          {books.map((book) => {
+            return (
+              <BookCard book={book} userDetails={userDetails} key={book.id} />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

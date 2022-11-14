@@ -1,5 +1,5 @@
 {
-  "AVATAR_URL": "https://ui-avatars.com/api/?name=Siva&length=1&background=random&bold=true",
+  "AVATAR_URL": "https://ui-avatars.com/api/?font-size=0.6&length=1&background=random&bold=true&name=",
   "LOCALSTORAGE_KEY_ISLOGGEDIN": "isLoggedIn",
   "LOCALSTORAGE_KEY_USERID": "userId",
   "LOCALSTORAGE_KEY_USERNAME": "userName",
