@@ -11,7 +11,6 @@ import UserHome from "./Components/User/UserHome";
 import Login from "./Components/Login/Login";
 import Navbar from "./Components/Navbar/Navbar";
 import Orders from "./Components/Orders/Orders";
-import Profile from "./Components/Profile/Profile";
 import Signup from "./Components/Signup/Signup";
 import { LoginContext } from "./AppContext";
 
@@ -21,11 +20,11 @@ function App() {
 
   useEffect(() => {
     setIsLoggedIn(
-      JSON.parse(localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN))
+      JSON.parse(localStorage.getItem(Constants.LOCALSTORAGE_KEY_ISLOGGEDIN))
     );
 
     setIsAdmin(
-      localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_USER_ROLE) ===
+      localStorage.getItem(Constants.LOCALSTORAGE_KEY_USER_ROLE) ===
         Constants.USERTYPE_ADMIN
     );
   }, []);
@@ -46,7 +45,6 @@ function App() {
             <Route path="/admin/editbook/:bookId" element={<EditBook />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Orders />} />
           </Routes>
         </LoginContext.Provider>

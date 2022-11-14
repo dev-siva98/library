@@ -3,17 +3,19 @@ import BookCard from "./BookCard/BookCard";
 import "./Home.css";
 import { LoginContext } from "../../AppContext";
 import Constants from "../../constants.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios";
 
 function UserHome() {
   const [books, setBooks] = useState([]);
+  const navigate = useNavigate();
 
   const scrollRef = useRef();
 
-  const { isLoggedIn } = useContext(LoginContext);
+  const { isLoggedIn, isAdmin } = useContext(LoginContext);
 
   useEffect(() => {
+    if (isAdmin) navigate("/admin");
     axios
       .get("/book/get/all")
       .then((response) => setBooks(response.data))
@@ -25,7 +27,7 @@ function UserHome() {
   };
 
   return (
-    // to prevent scrolling
+    // to prevent scrolling if not loggedIn
     <div className={isLoggedIn ? "" : "user-home-container"}>
       <div className="home-welcome">
         {isLoggedIn ? (
@@ -33,9 +35,10 @@ function UserHome() {
             <h1>
               Welcome
               <span className="home-header-user">
-                {localStorage.getItem(Constants.LOCALSTORAGE_TOKEN_USERNAME)}
+                {localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERNAME)}
               </span>
             </h1>
+            {isAdmin}
             <button
               className="btn btn-outline-info explore-button"
               onClick={handleScroll}
