@@ -40,7 +40,6 @@ function Login() {
       })
         .then((response) => {
           if (response.data) {
-            console.log(response.data);
             setLoginError(false);
 
             localStorage.setItem(
