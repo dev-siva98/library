@@ -43,28 +43,28 @@ function Login() {
             setLoginError(false);
 
             localStorage.setItem(
-              Constants.LOCALSTORAGE_TOKEN_ISLOGGEDIN,
+              Constants.LOCALSTORAGE_KEY_ISLOGGEDIN,
               JSON.stringify(true)
             );
 
             localStorage.setItem(
-              Constants.LOCALSTORAGE_TOKEN_USERID,
+              Constants.LOCALSTORAGE_KEY_USERID,
               response.data.id
             );
 
             localStorage.setItem(
-              Constants.LOCALSTORAGE_TOKEN_USERNAME,
-              response.data.name
+              Constants.LOCALSTORAGE_KEY_USERNAME,
+              response.data.userName
             );
 
             localStorage.setItem(
-              Constants.LOCALSTORAGE_TOKEN_USER_ROLE,
-              response.data.role
+              Constants.LOCALSTORAGE_KEY_USER_ROLE,
+              response.data.userRole
             );
 
             setIsLoggedIn(true);
 
-            if (response.data.role === Constants.USERTYPE_ADMIN) {
+            if (response.data.userRole === Constants.USERTYPE_ADMIN) {
               setIsAdmin(true);
               navigate("/admin");
             } else {

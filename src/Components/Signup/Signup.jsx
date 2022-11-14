@@ -5,7 +5,7 @@ import axios from "../../axios";
 
 function Signup() {
   const [errors, setErrors] = useState({
-    name: false,
+    userName: false,
     email: false,
     password: false,
     confirmPassword: false,
@@ -14,31 +14,31 @@ function Signup() {
 
   const nameRef = useRef();
   const emailRef = useRef();
-  const dobRef = useRef();
+  const dateOfBirthRef = useRef();
   const passwordRef = useRef();
-  const confirmRef = useRef();
+  const confirmPasswordRef = useRef();
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const name = nameRef.current.value.trim();
+    const userName = nameRef.current.value.trim();
     const email = emailRef.current.value;
-    const dob = dobRef.current.value;
+    const dateOfBirth = dateOfBirthRef.current.value;
     const password = passwordRef.current.value.trim();
-    const confirmPassword = confirmRef.current.value.trim();
+    const confirmPassword = confirmPasswordRef.current.value.trim();
 
     const errorSet = { ...errors };
-    name ? (errorSet.name = false) : (errorSet.name = true);
+    userName ? (errorSet.userName = false) : (errorSet.userName = true);
     setErrors(errorSet);
 
-    if (name && email && dob && password && confirmPassword) {
+    if (userName && email && dateOfBirth && password && confirmPassword) {
       if (password === confirmPassword) {
         const data = {
-          name,
+          userName,
           email,
-          dob,
+          dateOfBirth,
           password,
           role: "USER",
         };
@@ -77,9 +77,9 @@ function Signup() {
         <input
           type="text"
           id="name"
-          className={`form-control ${errors.name ? "is-invalid" : ""}`}
+          className={`form-control ${errors.userName ? "is-invalid" : ""}`}
           placeholder="John Samuel"
-          required={true}
+          required
           ref={nameRef}
         />
         <label htmlFor="name">Name</label>
@@ -93,7 +93,7 @@ function Signup() {
             errors.email || signupError ? "is-invalid" : ""
           }`}
           placeholder="example@example.com"
-          required={true}
+          required
           ref={emailRef}
         />
         <label htmlFor="email">E-mail</label>
@@ -102,12 +102,12 @@ function Signup() {
       <div className="form-floating mb-2">
         <input
           type="date"
-          id="dob"
-          className={`form-control ${errors.dob ? "is-invalid" : ""}`}
-          required={true}
-          ref={dobRef}
+          id="dateOfBirth"
+          className={`form-control ${errors.dateOfBirth ? "is-invalid" : ""}`}
+          required
+          ref={dateOfBirthRef}
         />
-        <label htmlFor="dob">Date of Birth</label>
+        <label htmlFor="dateOfBirth">Date of Birth</label>
       </div>
 
       <div className="form-floating mb-2">
@@ -116,7 +116,7 @@ function Signup() {
           id="password"
           className={`form-control ${errors.password ? "is-invalid" : ""}`}
           placeholder="Minimum 4 characters"
-          required={true}
+          required
           ref={passwordRef}
           minLength={4}
         />
@@ -131,8 +131,8 @@ function Signup() {
           className={`form-control ${
             errors.confirmPassword ? "is-invalid" : ""
           }`}
-          required={true}
-          ref={confirmRef}
+          required
+          ref={confirmPasswordRef}
           minLength={4}
         />
         <label htmlFor="confirmPassword">Confirm password</label>

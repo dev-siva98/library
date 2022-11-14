@@ -7,17 +7,17 @@ function AddBook() {
     title: false,
     author: false,
     genre: false,
-    img: false,
+    imageUrl: false,
   });
 
   const [isbnError, setIsbnError] = useState(false);
 
   const titleRef = useRef();
   const authorRef = useRef();
-  const isbnRef = useRef();
+  const isbnNumberRef = useRef();
   const genreRef = useRef();
-  const imgRef = useRef();
-  const copiesRef = useRef();
+  const imageUrlRef = useRef();
+  const totalNumberOfCopiesRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,26 +26,33 @@ function AddBook() {
 
     const title = titleRef.current.value.trim();
     const author = authorRef.current.value.trim();
-    const isbnNo = isbnRef.current.value;
+    const isbnNumber = isbnNumberRef.current.value;
     const genre = genreRef.current.value.trim();
-    const img = imgRef.current.value.trim();
-    const totalCopies = copiesRef.current.value;
+    const imageUrl = imageUrlRef.current.value.trim();
+    const totalNumberOfCopies = totalNumberOfCopiesRef.current.value;
 
     title ? (errorSet.title = false) : (errorSet.title = true);
     author ? (errorSet.author = false) : (errorSet.author = true);
     genre ? (errorSet.genre = false) : (errorSet.genre = true);
-    img ? (errorSet.img = false) : (errorSet.img = true);
+    imageUrl ? (errorSet.image = false) : (errorSet.image = true);
 
     setErrors(errorSet);
 
-    if (title && author && isbnNo && genre && img && totalCopies) {
+    if (
+      title &&
+      author &&
+      isbnNumber &&
+      genre &&
+      imageUrl &&
+      totalNumberOfCopies
+    ) {
       const data = {
         title,
         author,
-        isbnNo,
+        isbnNumber,
         genre,
-        img,
-        totalCopies,
+        imageUrl,
+        totalNumberOfCopies,
       };
 
       axios({
@@ -94,13 +101,13 @@ function AddBook() {
       <div className="form-floating mb-2">
         <input
           type="number"
-          id="isbn"
+          id="isbnNumber"
           className={`form-control ${isbnError ? "is-invalid" : ""}`}
           required
-          ref={isbnRef}
+          ref={isbnNumberRef}
           minLength={8}
         />
-        <label htmlFor="isbn">ISBN No</label>
+        <label htmlFor="isbnNumber">ISBN No</label>
       </div>
 
       <div className="form-floating mb-2">
@@ -117,23 +124,23 @@ function AddBook() {
       <div className="form-floating mb-2">
         <input
           type="number"
-          id="totalCopies"
+          id="totalNumberOfCopies"
           className="form-control"
           required
-          ref={copiesRef}
+          ref={totalNumberOfCopiesRef}
           min={0}
         />
-        <label htmlFor="totalCopies">Total copies</label>
+        <label htmlFor="totalNumberOfCopies">Total copies</label>
       </div>
 
       <div className="form-floating mb-2">
         <input
           type="text"
-          id="img"
-          className={`form-control ${errors.img ? "is-invalid" : ""}`}
-          ref={imgRef}
+          id="imageUrl"
+          className={`form-control ${errors.imageUrl ? "is-invalid" : ""}`}
+          ref={imageUrlRef}
         />
-        <label htmlFor="img">Image</label>
+        <label htmlFor="imageUrl">Image</label>
       </div>
 
       <div className="book-form-actions">
