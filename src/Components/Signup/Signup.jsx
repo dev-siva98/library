@@ -40,7 +40,6 @@ function Signup() {
           email,
           dateOfBirth,
           password,
-          role: "USER",
         };
 
         axios({
