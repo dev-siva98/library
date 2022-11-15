@@ -207,7 +207,7 @@ export const allOrders = [
 
 export const adminUserHeaders = ["UserId", "Name", "Email", "Date of birth", "Joined on"];
 
-export const adminUserBody = [  "userName", "email", "dateOfBirth", "createdAt"];
+export const adminUserBody = [  "userName", "email", "dateOfBirth"];
 
 export const adminBookHeaders = [
   "BookId",

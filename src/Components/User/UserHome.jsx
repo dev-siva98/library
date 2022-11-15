@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import BookCard from "./BookCard/BookCard";
 import "./Home.css";
-import { LoginContext } from "../../AppContext";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios";
+import { LoginContext } from "../../AppContext";
+import Constants from "../../constants.json";
 
 function UserHome() {
   const [books, setBooks] = useState([]);
@@ -26,6 +27,8 @@ function UserHome() {
     scrollRef.current.scrollIntoView();
   };
 
+  const userName = localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERNAME);
+
   return (
     // to prevent scrolling if not loggedIn
     <div className={isLoggedIn ? "" : "user-home-container"}>
@@ -34,7 +37,7 @@ function UserHome() {
           <>
             <h1>
               Welcome
-              <span className="home-header-user">{}</span>
+              <span className="home-header-user">{userName}</span>
             </h1>
             {isAdmin}
             <button
