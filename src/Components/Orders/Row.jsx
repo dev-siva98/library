@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import axios from "../../axios";
+import React, { useEffect, useState } from "react";
+import './Orders.css'
 
-function Row({ data }) {
-  const [rowData, setRowData] = useState(data);
+function Row({ book }) {
+  const [bookDetails, setBookDetails] = useState();
 
-  const { _id, bookId, img, date, expiry } = rowData;
+  const { bookId, createdAt } = book;
+  useEffect(() => {
+    axios
+      .get(`/book/get/${bookId}`)
+      .then((response) => {
+        setBookDetails(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  const handleReturn = () => {
-    setRowData((prevData) => {
-      return { ...prevData, returnDate: "06-11-2022" };
-    });
-  };
+  const localDateString = new Date(createdAt).toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+  });
+  const handleReturn = () => {};
 
   return (
     <tr>
-      <th scope="row">{_id}</th>
-      <td>{bookId}</td>
+      <th scope="row">{bookId}</th>
+      <td>{bookDetails?.title}</td>
+      <td>{bookDetails?.author}</td>
       <td>
         <img
-          src={img}
-          style={{ width: "100px", borderRadius: "50%" }}
+        className="user-order-image"
+          src={bookDetails?.imageUrl}
           alt="img"
         />
       </td>
-      <td>{date}</td>
-      <td>{expiry}</td>
+      <td className="user-order-date">{localDateString}</td>
       <td>
         <button onClick={handleReturn} className="btn btn-primary">
           Return now
