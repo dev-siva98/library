@@ -3,6 +3,13 @@
   overflow: hidden;
 }
 
+.time-warning-message {
+  background-color: #ffdfdfce;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
 .home-welcome {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?&cs=tinysrgb&w=1260&h=750&dpr=1");

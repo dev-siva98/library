@@ -46,7 +46,7 @@ function UserHome() {
 
           response.data.orderedBooks.forEach((element) => {
             const dateCreated = moment(element.createdAt);
-            if (dateNow.diff(dateCreated, "hours") > 20) {
+            if (dateNow.diff(dateCreated, "days") > 14) {
               //show notification
               setTimeWarning(true);
 
@@ -81,9 +81,15 @@ function UserHome() {
       <div className="home-welcome">
         {isLoggedIn ? (
           <>
-            <div className="time-warning-message">
-              <p>You have books pending to return</p>
-            </div>
+            {timeWarning && (
+              <div className="alert alert-danger time-warning-message">
+                <i className="bi bi-exclamation-triangle-fill"></i>
+                <p>
+                  You have books pending to return
+                  <Link className="text-danger" to={"/orders"}> goto orders</Link>
+                </p>
+              </div>
+            )}
             <h1>
               Welcome
               <span className="home-header-user">{userName}</span>
