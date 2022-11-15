@@ -79,13 +79,17 @@ function UserHome() {
         <div ref={scrollRef} className="cards-container">
           {books.map((book) => {
             return (
-              <BookCard
-                book={book}
-                isCheckoutLimitBreach={isCheckoutLimitBreach}
-                handleUpdateData={handleUpdateData}
-                userDetails={userDetails}
-                key={book.id}
-              />
+              <>
+                {userDetails && (
+                  <BookCard
+                    book={book}
+                    isCheckoutLimitBreach={isCheckoutLimitBreach}
+                    handleUpdateData={handleUpdateData}
+                    userDetails={userDetails}
+                    key={book.id}
+                  />
+                )}
+              </>
             );
           })}
         </div>

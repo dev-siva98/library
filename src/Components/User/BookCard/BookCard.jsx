@@ -20,11 +20,12 @@ function BookCard(props) {
 
   useEffect(() => {
     userDetails?.orderedBooks.forEach((bookItem) => {
+      //only works when there book in array
       if (bookItem.bookId === id) {
         setDisableButton(true);
-      } else setDisableButton(false);
+      }
     });
-  }, []);
+  }, [userDetails]);
 
   const handleSelect = () => {
     setModalShow(true);
