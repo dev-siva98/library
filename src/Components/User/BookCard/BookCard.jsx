@@ -27,10 +27,6 @@ function BookCard(props) {
     });
   }, [userDetails]);
 
-  const handleSelect = () => {
-    setModalShow(true);
-  };
-
   return (
     <div className="card book-card">
       <img className="card-img-top" src={imageUrl} alt="book" />
@@ -44,7 +40,7 @@ function BookCard(props) {
           <button
             disabled={isCheckoutLimitBreach || disableButton}
             className="btn btn-primary"
-            onClick={handleSelect}
+            onClick={() => setModalShow(true)}
           >
             Select
           </button>

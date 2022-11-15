@@ -31,7 +31,8 @@ function EditBook() {
   const totalNumberOfCopiesRef = useRef();
 
   const handleChange = (e, value) => {
-    if (e.target.value.trim() !== value) setInputChanged(true);
+    if (e.target.value.trim() !== value)
+      setInputChanged(true); //to enable save and reset button
     else setInputChanged(false);
   };
 
@@ -47,7 +48,14 @@ function EditBook() {
 
     const errorSet = { ...errors };
 
-    if (title && author && isbnNumber && genre && totalNumberOfCopies && imageUrl) {
+    if (
+      title &&
+      author &&
+      isbnNumber &&
+      genre &&
+      totalNumberOfCopies &&
+      imageUrl
+    ) {
       //validate fields have values to aviod overriting with empty values
       const data = {
         title,
@@ -120,7 +128,7 @@ function EditBook() {
           defaultValue={book?.isbnNumber}
           onChange={(e) => handleChange(e, book.isbnNumber)}
         />
-        <label htmlFor="isbn">ISBN No</label>
+        <label htmlFor="isbn">ISBN Number</label>
       </div>
 
       <div className="form-floating mb-2">
@@ -147,14 +155,16 @@ function EditBook() {
           defaultValue={book?.totalNumberOfCopies}
           onChange={(e) => handleChange(e, book.totalNumberOfCopies)}
         />
-        <label htmlFor="totalNumberOfCopies">Copies available</label>
+        <label htmlFor="totalNumberOfCopies">Total copies</label>
       </div>
 
       <div className="form-floating mb-2">
         <input
           type="text"
           id="imageUrl"
-          className={`form-control form-file ${errors.imageUrl ? "is-invalid" : ""}`}
+          className={`form-control form-file ${
+            errors.imageUrl ? "is-invalid" : ""
+          }`}
           ref={imageUrlRef}
           defaultValue={book?.imageUrl}
           onChange={(e) => handleChange(e, book.imageUrl)}
