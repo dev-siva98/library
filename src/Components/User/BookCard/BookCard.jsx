@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import axios from "../../../axios";
+import React, { useEffect, useState } from "react";
 import "./BookCard.css";
 import ConfirmationModal from "./ConfirmationModal";
+import Constants from "../../../constants.json";
 
-function BookCard({ book, userDetails }) {
+function BookCard({ book }) {
   const [modalShow, setModalShow] = useState(false);
+  const [userDetails, setUserDetails] = useState();
+
   const {
     id,
     title,
@@ -14,10 +18,20 @@ function BookCard({ book, userDetails }) {
     copiesAvailableForCheckout,
   } = book;
 
-  const { orderedBooks } = userDetails;
+  useEffect(() => {
+    axios
+      .get(
+        `/user/get/${localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERID)}`
+      )
+      .then((response) => {
+        setUserDetails(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  console.log(orderedBooks);
-  const isLimitBreach = orderedBooks.size < 1;
+  const isCheckoutLimitBreach = userDetails?.orderedBooks.length > 1;
 
   return (
     <div className="card book-card">
@@ -30,7 +44,7 @@ function BookCard({ book, userDetails }) {
         <p className="card-text">ISBN : {isbnNumber}</p>
         {copiesAvailableForCheckout > 0 ? (
           <button
-            disabled={isLimitBreach}
+            disabled={isCheckoutLimitBreach}
             className="btn btn-primary"
             onClick={() => setModalShow(true)}
           >

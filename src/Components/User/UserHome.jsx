@@ -2,13 +2,11 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import BookCard from "./BookCard/BookCard";
 import "./Home.css";
 import { LoginContext } from "../../AppContext";
-import Constants from "../../constants.json";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios";
 
 function UserHome() {
   const [books, setBooks] = useState([]);
-  const [userDetails, setUserDetails] = useState();
 
   const navigate = useNavigate();
 
@@ -18,18 +16,6 @@ function UserHome() {
 
   useEffect(() => {
     if (isAdmin) navigate("/admin");
-
-    axios
-      .get(
-        `/user/get/${localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERID)}`
-      )
-      .then((response) => {
-        setUserDetails(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
     axios
       .get("/book/get/all")
       .then((response) => setBooks(response.data))
@@ -48,7 +34,7 @@ function UserHome() {
           <>
             <h1>
               Welcome
-              <span className="home-header-user">{userDetails?.userName}</span>
+              <span className="home-header-user">{}</span>
             </h1>
             {isAdmin}
             <button
@@ -67,9 +53,7 @@ function UserHome() {
       {isLoggedIn && (
         <div ref={scrollRef} className="cards-container">
           {books.map((book) => {
-            return (
-              <BookCard book={book} userDetails={userDetails} key={book.id} />
-            );
+            return <BookCard book={book} key={book.id} />;
           })}
         </div>
       )}
