@@ -5,11 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios";
 import { LoginContext } from "../../AppContext";
 import Constants from "../../constants.json";
+import moment from "moment";
 
 function UserHome() {
   const [books, setBooks] = useState([]);
   const [userDetails, setUserDetails] = useState();
   const [updateData, setUpdateData] = useState(false); //to trigger useEffect
+  const [timeWarning, setTimeWarning] = useState(false);
+  const [isCheckoutLimitBreach, setIsCheckoutLimitBreach] = useState(false);
 
   const navigate = useNavigate();
 
@@ -32,14 +35,35 @@ function UserHome() {
         `/user/get/${localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERID)}`
       )
       .then((response) => {
-        setUserDetails(response.data);
+        if (response.data) {
+          setUserDetails(response.data);
+
+          //set limit to true or false according to length of the array of books
+          setIsCheckoutLimitBreach(response.data.orderedBooks.length > 1);
+
+          //compare dates to show warning
+          const dateNow = moment(new Date());
+
+          response.data.orderedBooks.forEach((element) => {
+            const dateCreated = moment(element.createdAt);
+            if (dateNow.diff(dateCreated, "hours") > 20) {
+              //show notification
+              setTimeWarning(true);
+
+              //disable select buttons to prevent checkout of books
+              setIsCheckoutLimitBreach(true);
+            }
+          });
+        } else {
+          console.log("User details fetch error");
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [updateData]); //call again to get details of updated orders and updated copiesAvailableForCheckout
+  }, [updateData]); //call again to updated orders and updated copiesAvailableForCheckout
 
-  const isCheckoutLimitBreach = userDetails?.orderedBooks.length > 1;
+  console.log(timeWarning);
 
   const handleScroll = () => {
     scrollRef.current.scrollIntoView();
@@ -57,6 +81,9 @@ function UserHome() {
       <div className="home-welcome">
         {isLoggedIn ? (
           <>
+            <div className="time-warning-message">
+              <p>You have books pending to return</p>
+            </div>
             <h1>
               Welcome
               <span className="home-header-user">{userName}</span>
