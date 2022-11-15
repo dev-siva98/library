@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../../axios";
+
 function EditBook() {
   const [errors, setErrors] = useState({
     title: false,
     author: false,
     genre: false,
-    img: false,
+    imageUrl: false,
   });
   const [book, setBook] = useState();
   const [inputChanged, setInputChanged] = useState(false); //detect input change to enable save button
@@ -24,10 +25,10 @@ function EditBook() {
 
   const titleRef = useRef();
   const authorRef = useRef();
-  const isbnRef = useRef();
+  const isbnNumberRef = useRef();
   const genreRef = useRef();
-  const imgRef = useRef();
-  const totalCopiesRef = useRef();
+  const imageUrlRef = useRef();
+  const totalNumberOfCopiesRef = useRef();
 
   const handleChange = (e, value) => {
     if (e.target.value.trim() !== value) setInputChanged(true);
@@ -39,22 +40,22 @@ function EditBook() {
 
     const title = titleRef.current.value.trim();
     const author = authorRef.current.value.trim();
-    const isbnNo = isbnRef.current.value;
+    const isbnNumber = isbnNumberRef.current.value;
     const genre = genreRef.current.value.trim();
-    const totalCopies = totalCopiesRef.current.value;
-    const img = imgRef.current.value.trim();
+    const totalNumberOfCopies = totalNumberOfCopiesRef.current.value;
+    const imageUrl = imageUrlRef.current.value.trim();
 
     const errorSet = { ...errors };
 
-    if (title && author && isbnNo && genre && totalCopies && img) {
+    if (title && author && isbnNumber && genre && totalNumberOfCopies && imageUrl) {
       //validate fields have values to aviod overriting with empty values
       const data = {
         title,
         author,
-        isbnNo,
+        isbnNumber,
         genre,
-        totalCopies,
-        img,
+        totalNumberOfCopies,
+        imageUrl,
       };
 
       axios({
@@ -74,7 +75,7 @@ function EditBook() {
     title ? (errorSet.title = false) : (errorSet.title = true);
     author ? (errorSet.author = false) : (errorSet.author = true);
     genre ? (errorSet.genre = false) : (errorSet.genre = true);
-    img ? (errorSet.img = false) : (errorSet.img = true);
+    imageUrl ? (errorSet.imageUrl = false) : (errorSet.imageUrl = true);
 
     setErrors(errorSet);
   };
@@ -113,11 +114,11 @@ function EditBook() {
           type="number"
           id="isbn"
           className="form-control"
-          ref={isbnRef}
+          ref={isbnNumberRef}
           minLength={8}
           required
-          defaultValue={book?.isbnNo}
-          onChange={(e) => handleChange(e, book.isbnNo)}
+          defaultValue={book?.isbnNumber}
+          onChange={(e) => handleChange(e, book.isbnNumber)}
         />
         <label htmlFor="isbn">ISBN No</label>
       </div>
@@ -138,27 +139,27 @@ function EditBook() {
       <div className="form-floating mb-2">
         <input
           type="number"
-          id="totalCopies"
+          id="totalNumberOfCopies"
           className="form-control"
-          ref={totalCopiesRef}
+          ref={totalNumberOfCopiesRef}
           required
           min={0}
-          defaultValue={book?.totalCopies}
-          onChange={(e) => handleChange(e, book.totalCopies)}
+          defaultValue={book?.totalNumberOfCopies}
+          onChange={(e) => handleChange(e, book.totalNumberOfCopies)}
         />
-        <label htmlFor="totalCopies">Copies available</label>
+        <label htmlFor="totalNumberOfCopies">Copies available</label>
       </div>
 
       <div className="form-floating mb-2">
         <input
           type="text"
-          id="img"
-          className={`form-control form-file ${errors.img ? "is-invalid" : ""}`}
-          ref={imgRef}
-          defaultValue={book?.img}
-          onChange={(e) => handleChange(e, book.img)}
+          id="imageUrl"
+          className={`form-control form-file ${errors.imageUrl ? "is-invalid" : ""}`}
+          ref={imageUrlRef}
+          defaultValue={book?.imageUrl}
+          onChange={(e) => handleChange(e, book.imageUrl)}
         />
-        <label htmlFor="img">Image Url</label>
+        <label htmlFor="imageUrl">Image Url</label>
       </div>
 
       <div className="book-form-actions">

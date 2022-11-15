@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import Constants from "../../../constants.json";
 
-function ConfirmationModal({ bookDetails, show, onHide }) {
+function ConfirmationModal({ bookDetails, show, onHide, handleUpdateData }) {
   const { id, title, author, genre, isbnNumber, imageUrl } = bookDetails;
 
   const handleCheckout = () => {
@@ -18,6 +18,7 @@ function ConfirmationModal({ bookDetails, show, onHide }) {
           alert("You already have 2 books with you!!");
         }
         onHide();
+        handleUpdateData();
       })
       .catch((err) => {
         console.log(err);

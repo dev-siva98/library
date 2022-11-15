@@ -1,12 +1,12 @@
-import axios from "../../../axios";
 import React, { useEffect, useState } from "react";
 import "./BookCard.css";
 import ConfirmationModal from "./ConfirmationModal";
-import Constants from "../../../constants.json";
 
-function BookCard({ book }) {
+function BookCard(props) {
+  const { book, isCheckoutLimitBreach, handleUpdateData, userDetails } = props;
+
   const [modalShow, setModalShow] = useState(false);
-  const [userDetails, setUserDetails] = useState();
+  const [disableButton, setDisableButton] = useState(false); //to disable button if book already in the array
 
   const {
     id,
@@ -19,19 +19,16 @@ function BookCard({ book }) {
   } = book;
 
   useEffect(() => {
-    axios
-      .get(
-        `/user/get/${localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERID)}`
-      )
-      .then((response) => {
-        setUserDetails(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    userDetails?.orderedBooks.forEach((bookItem) => {
+      if (bookItem.bookId === id) {
+        setDisableButton(true);
+      } else setDisableButton(false);
+    });
   }, []);
 
-  const isCheckoutLimitBreach = userDetails?.orderedBooks.length > 1;
+  const handleSelect = () => {
+    setModalShow(true);
+  };
 
   return (
     <div className="card book-card">
@@ -44,9 +41,9 @@ function BookCard({ book }) {
         <p className="card-text">ISBN : {isbnNumber}</p>
         {copiesAvailableForCheckout > 0 ? (
           <button
-            disabled={isCheckoutLimitBreach}
+            disabled={isCheckoutLimitBreach || disableButton}
             className="btn btn-primary"
-            onClick={() => setModalShow(true)}
+            onClick={handleSelect}
           >
             Select
           </button>
@@ -57,6 +54,7 @@ function BookCard({ book }) {
       <ConfirmationModal
         bookDetails={book}
         show={modalShow}
+        handleUpdateData={handleUpdateData}
         onHide={() => setModalShow(false)}
       />
     </div>
