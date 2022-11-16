@@ -5,6 +5,7 @@ import Row from "./Row";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  const [updateData, setUpdateData] = useState(false);
 
   useEffect(() => {
     axios
@@ -19,7 +20,7 @@ function Orders() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [updateData]);
 
   return (
     <table className="table table-hover">
@@ -35,7 +36,13 @@ function Orders() {
       </thead>
       <tbody>
         {orders.map((book) => {
-          return <Row book={book} key={book.bookId} />;
+          return (
+            <Row
+              book={book}
+              key={book.bookId}
+              setUpdateData={() => setUpdateData(!updateData)}
+            />
+          );
         })}
       </tbody>
     </table>

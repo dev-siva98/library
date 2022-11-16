@@ -1,11 +1,12 @@
 import axios from "../../axios";
 import React, { useEffect, useState } from "react";
-import './Orders.css'
+import "./Orders.css";
 
-function Row({ book }) {
+function Row({ book, setUpdateData }) {
   const [bookDetails, setBookDetails] = useState();
 
   const { bookId, createdAt } = book;
+
   useEffect(() => {
     axios
       .get(`/book/get/${bookId}`)
@@ -17,10 +18,22 @@ function Row({ book }) {
       });
   }, []);
 
+  const handleReturn = () => {
+    if (window.confirm(`Checkout ${bookId} ?`)) {
+      axios
+        .put(`/user/checkin/${localStorage.getItem("userId")}/${bookId}`)
+        .then(() => {
+          setUpdateData();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   const localDateString = new Date(createdAt).toLocaleString("en-IN", {
     timeZone: "Asia/Kolkata",
   });
-  const handleReturn = () => {};
 
   return (
     <tr>
@@ -29,7 +42,7 @@ function Row({ book }) {
       <td>{bookDetails?.author}</td>
       <td>
         <img
-        className="user-order-image"
+          className="user-order-image"
           src={bookDetails?.imageUrl}
           alt="img"
         />
