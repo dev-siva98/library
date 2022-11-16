@@ -22,13 +22,14 @@ function UserHome() {
 
   useEffect(() => {
     if (isAdmin) navigate("/admin");
-  }, []); // navigate if already loggedIn with admin
+  }, [isAdmin]); // navigate if already loggedIn with admin
 
   useEffect(() => {
     axios
       .get("/book/get/all")
       .then((response) => setBooks(response.data))
       .catch((err) => console.log("Error " + err));
+    // get updated book details to check availableCopies to update out of stock
 
     axios
       .get(
@@ -63,12 +64,11 @@ function UserHome() {
       });
   }, [updateData]); //call again to updated orders and updated copiesAvailableForCheckout
 
-  console.log(timeWarning);
-
   const handleScroll = () => {
     scrollRef.current.scrollIntoView();
   };
 
+  // to refresh useeffect
   const handleUpdateData = () => {
     setUpdateData(!updateData);
   };
@@ -86,7 +86,9 @@ function UserHome() {
                 <i className="bi bi-exclamation-triangle-fill"></i>
                 <p>
                   You have books pending to return
-                  <Link className="text-danger" to={"/orders"}> goto orders</Link>
+                  <Link className="text-danger" to={"/orders"}>
+                    goto orders
+                  </Link>
                 </p>
               </div>
             )}
