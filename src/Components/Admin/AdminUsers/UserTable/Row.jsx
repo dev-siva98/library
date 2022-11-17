@@ -10,11 +10,9 @@ function Row({ user }) {
   return (
     <tr>
       <th scope="row">{user.id}</th>
-
-      {adminUserBody.map((column, index) => {
-        return <td key={index}>{user[column]}</td>;
-      })}
-
+      <td>{user.userName}</td>
+      <td>{user.email}</td>
+      <td>{user.dateOfBirth}</td>
       <td style={{ textTransform: "uppercase" }}>{localDateString}</td>
     </tr>
   );

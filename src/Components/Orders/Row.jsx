@@ -19,7 +19,7 @@ function Row({ book, setUpdateData }) {
   }, []);
 
   const handleReturn = () => {
-    if (window.confirm(`Checkout ${bookId} ?`)) {
+    if (window.confirm(`Return ${bookId} ?`)) {
       axios
         .put(`/user/checkin/${localStorage.getItem("userId")}/${bookId}`)
         .then(() => {
