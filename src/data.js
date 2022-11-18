@@ -1,4 +1,10 @@
-export const adminUserHeaders = ["UserId", "Name", "Email", "Date of birth", "Joined on"];
+export const adminUserHeaders = [
+  "UserId",
+  "Name",
+  "Email",
+  "Date of birth",
+  "Joined on",
+];
 
 export const adminBookHeaders = [
   "BookId",

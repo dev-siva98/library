@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { LoginContext } from "../../AppContext";
 import axios from "../../axios";
 
 function EditBook() {
@@ -15,6 +16,12 @@ function EditBook() {
   const { bookId } = useParams(); //get bookId from params
 
   const navigate = useNavigate();
+
+  const { isLoggedIn, isAdmin } = useContext(LoginContext);
+
+  useEffect(() => {
+    if (!isAdmin || !isLoggedIn) navigate("/");
+  }, []);
 
   useEffect(() => {
     axios

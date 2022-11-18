@@ -1,6 +1,8 @@
 import axios from "../../axios";
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./AddBook.css";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../AppContext";
 
 function AddBook() {
   const [errors, setErrors] = useState({
@@ -11,6 +13,13 @@ function AddBook() {
   });
 
   const [isbnError, setIsbnError] = useState(false);
+
+  const { isLoggedIn, isAdmin } = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAdmin || !isLoggedIn) navigate("/");
+  }, []);
 
   const titleRef = useRef();
   const authorRef = useRef();

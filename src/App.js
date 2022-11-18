@@ -13,6 +13,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Orders from "./Components/Orders/Orders";
 import Signup from "./Components/Signup/Signup";
 import { LoginContext } from "./AppContext";
+import ErrorPage from "./Components/ErrorPage/ErrorPage";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -46,6 +47,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </LoginContext.Provider>
       </BrowserRouter>

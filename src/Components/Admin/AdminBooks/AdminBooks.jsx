@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Table from "./BookTable/Table";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { LoginContext } from "../../../AppContext";
 
 function AdminBooks() {
+  const { isLoggedIn, isAdmin } = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAdmin || !isLoggedIn) navigate("/");
+  }, []);
   return (
     <>
       <div className="books-header-container">
