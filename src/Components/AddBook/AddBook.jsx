@@ -27,6 +27,7 @@ function AddBook() {
   const genreRef = useRef();
   const imageUrlRef = useRef();
   const totalNumberOfCopiesRef = useRef();
+  const formRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,6 +74,8 @@ function AddBook() {
           if (response.data) {
             setIsbnError(false);
             alert(title + " added");
+
+            formRef.current.reset();
           } else setIsbnError(true);
         })
         .catch((err) => console.log("Error " + err));
@@ -80,7 +83,7 @@ function AddBook() {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form className="form-container" onSubmit={handleSubmit} ref={formRef}>
       <h1 className="form-header">Add book</h1>
       <div className="form-error-container">
         {isbnError && <p>This book is already added</p>}

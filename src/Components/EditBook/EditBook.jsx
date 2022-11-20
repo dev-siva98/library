@@ -36,11 +36,17 @@ function EditBook() {
   const genreRef = useRef();
   const imageUrlRef = useRef();
   const totalNumberOfCopiesRef = useRef();
+  const formRef = useRef();
 
   const handleChange = (e, value) => {
     if (e.target.value.trim() !== value)
       setInputChanged(true); //to enable save and reset button
     else setInputChanged(false);
+  };
+
+  const handleReset = () => {
+    formRef.current.reset();
+    setInputChanged(false);
   };
 
   const handleSubmit = (e) => {
@@ -55,6 +61,7 @@ function EditBook() {
 
     const errorSet = { ...errors };
 
+    //validate fields have values to aviod overriting with empty valueu
     if (
       title &&
       author &&
@@ -63,7 +70,6 @@ function EditBook() {
       totalNumberOfCopies &&
       imageUrl
     ) {
-      //validate fields have values to aviod overriting with empty values
       const data = {
         title,
         author,
@@ -96,7 +102,7 @@ function EditBook() {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form className="form-container" onSubmit={handleSubmit} ref={formRef}>
       <h1 className="form-header">Edit book</h1>
       <div className="form-floating mb-2">
         <input
@@ -183,8 +189,8 @@ function EditBook() {
         <button
           disabled={!inputChanged}
           className="btn btn-primary"
-          type="reset"
-          onClick={() => setInputChanged(false)}
+          type="button"
+          onClick={handleReset}
         >
           Reset
         </button>

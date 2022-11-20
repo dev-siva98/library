@@ -13,7 +13,7 @@ function AdminUsers() {
 
   return (
     <>
-      <h1>Users</h1>
+      <h1 className="table-header-container">Users</h1>
       <Table />
     </>
   );

@@ -2,7 +2,6 @@ import axios from "../../../../axios";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Row from "./Row";
-import "./Table.css";
 import { adminUserHeaders, adminUserBody } from "../../../../data";
 
 

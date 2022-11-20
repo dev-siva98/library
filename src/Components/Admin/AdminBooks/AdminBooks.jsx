@@ -12,7 +12,7 @@ function AdminBooks() {
   }, []);
   return (
     <>
-      <div className="books-header-container">
+      <div className="table-header-container">
         <h1>Books</h1>
         <Link to={"/admin/addbook"} className="btn btn-success">
           Add book
