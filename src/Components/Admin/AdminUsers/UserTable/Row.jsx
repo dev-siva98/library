@@ -1,6 +1,4 @@
 import React from "react";
-import { adminUserBody } from "../../../../data";
-
 
 function Row({ user }) {
   const localDateString = new Date(user.createdAt).toLocaleString("en-IN", {

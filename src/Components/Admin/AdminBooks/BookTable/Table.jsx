@@ -1,6 +1,5 @@
 import axios from "../../../../axios";
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
 import Row from "./Row";
 import "./Table.css";
 import { adminBookHeaders, adminBookBody } from "../../../../data";
@@ -9,7 +8,7 @@ function Table() {
   const [books, setBooks] = useState([]);
   const [updateComponent, setUpdateComponent] = useState(false);
 
-  //fetch and update books after every delete and edit
+  //fetch and update books after every delete
   const handleUpdate = () => {
     setUpdateComponent(!updateComponent);
   };
@@ -26,7 +25,11 @@ function Table() {
       <thead>
         <tr>
           {adminBookHeaders.map((header, index) => {
-            return <Header header={header} key={index} />;
+            return (
+              <th scope="col" key={index}>
+                {header}
+              </th>
+            );
           })}
         </tr>
       </thead>
@@ -38,7 +41,7 @@ function Table() {
               body={adminBookBody}
               key={index}
               //function get invoked after deleting book
-              handleUpdate={handleUpdate} //state changes from child component
+              handleUpdate={handleUpdate}
             />
           );
         })}

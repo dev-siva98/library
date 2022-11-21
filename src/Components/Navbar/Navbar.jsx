@@ -7,14 +7,15 @@ import Constants from "../../constants.json";
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false); //to toggle dropdown menu
-  const { isAdmin, setIsAdmin, isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { isAdmin, setIsAdmin, isLoggedIn, setIsLoggedIn } =
+    useContext(LoginContext);
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
     setShowDropdown(!showDropdown);
     setIsLoggedIn(false);
-    setIsAdmin(false)
+    setIsAdmin(false);
     localStorage.clear();
     navigate("/login");
   };
@@ -70,11 +71,9 @@ function Navbar() {
         {showDropdown && (
           <div className="dropdown-items">
             {isLoggedIn ? (
-              <>
-                <p className="navbar-logout" onClick={handleLogout}>
-                  Logout
-                </p>
-              </>
+              <p className="navbar-logout" onClick={handleLogout}>
+                Logout
+              </p>
             ) : (
               <Link
                 to={"/login"}

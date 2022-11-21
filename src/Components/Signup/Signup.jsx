@@ -4,12 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios";
 
 function Signup() {
-  const [errors, setErrors] = useState({
-    userName: false,
-    email: false,
-    password: false,
-    confirmPassword: false,
-  });
+  const [nameError, setNameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const [signupError, setSignupError] = useState(false);
 
   const nameRef = useRef();
@@ -26,12 +23,10 @@ function Signup() {
     const userName = nameRef.current.value.trim();
     const email = emailRef.current.value;
     const dateOfBirth = dateOfBirthRef.current.value;
-    const password = passwordRef.current.value.trim();
-    const confirmPassword = confirmPasswordRef.current.value.trim();
+    const password = passwordRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
 
-    const errorSet = { ...errors };
-    userName ? (errorSet.userName = false) : (errorSet.userName = true);
-    setErrors(errorSet);
+    userName ? setNameError(false) : setNameError(true);
 
     if (userName && email && dateOfBirth && password && confirmPassword) {
       if (password === confirmPassword) {
@@ -57,8 +52,7 @@ function Signup() {
       } else {
         // passwords not matching, setting error on both true
 
-        errorSet.password = true;
-        errorSet.confirmPassword = true;
+        setPasswordError(true);
         alert("Passwords should match");
       }
     }
@@ -76,7 +70,7 @@ function Signup() {
         <input
           type="text"
           id="name"
-          className={`form-control ${errors.userName ? "is-invalid" : ""}`}
+          className={`form-control ${nameError ? "is-invalid" : ""}`}
           placeholder="John Samuel"
           required
           ref={nameRef}
@@ -88,9 +82,7 @@ function Signup() {
         <input
           type="email"
           id="email"
-          className={`form-control ${
-            errors.email || signupError ? "is-invalid" : ""
-          }`}
+          className={`form-control ${signupError ? "is-invalid" : ""}`}
           placeholder="example@example.com"
           required
           ref={emailRef}
@@ -102,7 +94,7 @@ function Signup() {
         <input
           type="date"
           id="dateOfBirth"
-          className={`form-control ${errors.dateOfBirth ? "is-invalid" : ""}`}
+          className={"form-control"}
           required
           ref={dateOfBirthRef}
         />
@@ -113,7 +105,7 @@ function Signup() {
         <input
           type="password"
           id="password"
-          className={`form-control ${errors.password ? "is-invalid" : ""}`}
+          className={`form-control ${passwordError ? "is-invalid" : ""}`}
           placeholder="Minimum 4 characters"
           required
           ref={passwordRef}
@@ -127,9 +119,7 @@ function Signup() {
           type="password"
           id="confirmPassword"
           placeholder="Confirm password"
-          className={`form-control ${
-            errors.confirmPassword ? "is-invalid" : ""
-          }`}
+          className={`form-control ${passwordError ? "is-invalid" : ""}`}
           required
           ref={confirmPasswordRef}
           minLength={4}

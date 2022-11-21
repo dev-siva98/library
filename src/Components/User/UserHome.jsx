@@ -22,7 +22,7 @@ function UserHome() {
 
   useEffect(() => {
     if (isAdmin) navigate("/admin");
-  }, [isAdmin]); // navigate if already loggedIn with admin
+  }, [isAdmin]); // navigate if already loggedIn as admin
 
   useEffect(() => {
     axios
@@ -73,8 +73,6 @@ function UserHome() {
     setUpdateData(!updateData);
   };
 
-  const userName = localStorage.getItem(Constants.LOCALSTORAGE_KEY_USERNAME);
-
   return (
     // to prevent scrolling if not loggedIn
     <div className={isLoggedIn ? "" : "user-home-container"}>
@@ -94,7 +92,7 @@ function UserHome() {
             )}
             <h1>
               Welcome
-              <span className="home-header-user">{userName}</span>
+              <span className="home-header-user">{userDetails?.userName}</span>
             </h1>
             {isAdmin}
             <button

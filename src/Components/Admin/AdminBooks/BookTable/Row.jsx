@@ -14,7 +14,6 @@ function Row({ body, book, handleUpdate }) {
       .delete(`/book/delete/${bookId}`)
       .then((response) => {
         if (response.data) {
-          alert("Deleted");
           handleUpdate();
         } else {
           alert("Error deleting");
@@ -40,7 +39,10 @@ function Row({ body, book, handleUpdate }) {
         >
           <i className="bi bi-pencil-fill"></i>
         </Link>
-        <button onClick={() => handleDelete(book.id)} className="btn btn-danger">
+        <button
+          onClick={() => handleDelete(book.id)}
+          className="btn btn-danger"
+        >
           <i className="bi bi-trash-fill"></i>
         </button>
       </td>

@@ -6,10 +6,6 @@ import "./Login.css";
 import { LoginContext } from "../../AppContext";
 
 function Login() {
-  const [errors, setErrors] = useState({
-    email: false,
-    password: false,
-  });
   const [loginError, setLoginError] = useState(false); //set if invalid credentials
 
   const { setIsLoggedIn, setIsAdmin } = useContext(LoginContext);
@@ -24,12 +20,6 @@ function Login() {
 
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-
-    const errorSet = { ...errors };
-
-    email ? (errorSet.email = false) : (errorSet.email = true);
-    password ? (errorSet.password = false) : (errorSet.password = true);
-    setErrors(errorSet);
 
     if (email && password) {
       const data = { email, password };
@@ -95,12 +85,10 @@ function Login() {
       <div className="form-floating mb-3">
         <input
           type="email"
-          className={`form-control ${
-            errors.email || loginError ? "is-invalid" : ""
-          }`}
+          className={`form-control ${loginError ? "is-invalid" : ""}`}
           id="email"
           placeholder="name@example.com"
-          required={true}
+          required
           ref={emailRef}
         />
         <label htmlFor="email">Email</label>
@@ -108,19 +96,17 @@ function Login() {
       <div className="form-floating">
         <input
           type="password"
-          className={`form-control ${
-            errors.password || loginError ? "is-invalid" : ""
-          }`}
+          className={`form-control ${loginError ? "is-invalid" : ""}`}
           id="password"
           placeholder="Password"
-          required={true}
+          required
           ref={passwordRef}
         />
         <label htmlFor="password">Password</label>
       </div>
       <div className="login-action-container">
         <p>
-          New here ?{" "}
+          New here ?
           <Link to={"/signup"} className="swap-link">
             Signup
           </Link>

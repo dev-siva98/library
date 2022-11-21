@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../../AppContext";
 import "./AdminHome.css";
-import Constants from '../../constants.json'
+import Constants from "../../constants.json";
 
 function AdminHome() {
   const { isAdmin, isLoggedIn } = useContext(LoginContext);
@@ -19,7 +19,7 @@ function AdminHome() {
             <h2 className="admin-header-2">welcome to library management</h2>
           ) : (
             <h4>
-              You are not authorized to be here, go <Link to={"/"}>home</Link>{" "}
+              You are not authorized to be here, go <Link className="admin-home-link" to={"/"}>home</Link>
               buddy !!!
             </h4>
           )}

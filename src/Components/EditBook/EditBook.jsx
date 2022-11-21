@@ -26,7 +26,10 @@ function EditBook() {
   useEffect(() => {
     axios
       .get(`/book/get/${bookId}`)
-      .then((response) => setBook(response.data))
+      .then((response) => {
+        if (response.data) setBook(response.data);
+        else alert("Error fetching book details");
+      })
       .catch((err) => console.log("Error " + err));
   }, []);
 
@@ -61,7 +64,7 @@ function EditBook() {
 
     const errorSet = { ...errors };
 
-    //validate fields have values to aviod overriting with empty valueu
+    //validate fields have values to aviod overriting with empty values
     if (
       title &&
       author &&
